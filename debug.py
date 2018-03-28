@@ -65,11 +65,11 @@ while True:
         get_pos = rpc_connection.getstakinginfo()["difficulty"]
 
         version = ('Version: %s' % get_version)
-        balance = ('Balance: %d' % get_balance)
-        stake = ('Stake: %d' % get_stake)
+        balance = ('Balance: %f' % get_balance)
+        stake = ('Stake: %f' % get_stake)
         connections = ('Connections: %d' % get_connection)
         blocks = ('Blocks: %d' % get_blocks)
-        pos = ('Proof-of-Stake: %d' % get_pos)
+        pos = ('Proof-of-Stake: %f' % get_pos)
 
         textNImg.AddText((version), 10, 10, Id="1")
         textNImg.AddText((balance), 10, 30, Id="2")
