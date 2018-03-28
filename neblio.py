@@ -13,7 +13,7 @@ getinfo = rpc_connection.getinfo()["connections"]
 connections = ('Connections: %d' % getinfo)
 textNImg.AddText((connections), 10, 10, Id="Start")
 
-textNImg.AddText("hello world", 20, 10, Id="line2" )
+textNImg.AddText("hello world", 10, 20, Id="line2" )
 
 
 
