@@ -1,5 +1,6 @@
 from bitcoinrpc.authproxy import AuthServiceProxy
 from papirus import Papirus
+from papirus import PapirusText
 
 text = PapirusText([rotation = rot])
 
