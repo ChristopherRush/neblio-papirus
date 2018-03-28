@@ -2,6 +2,8 @@ from bitcoinrpc.authproxy import AuthServiceProxy
 from papirus import Papirus
 from papirus import PapirusText
 
+
+rot = 0, 90, 180 or 270
 text = PapirusText([rotation = rot])
 
 # rpc_user and rpc_password are set in the bitcoin.conf file
