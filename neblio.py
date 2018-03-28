@@ -1,6 +1,7 @@
 from bitcoinrpc.authproxy import AuthServiceProxy
 from papirus import Papirus
 from papirus import PapirusText
+from papirus import PapirusComposite
 
 text = PapirusText()
 
@@ -8,8 +9,12 @@ text = PapirusText()
 rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxnatVGpW9tvXhuXdTHt@127.0.0.1:8332")
 getinfo = rpc_connection.getinfo()["connections"]
 
+
 connections = "Connections:", getinfo
-text.write(connections)
+textNImg.AddText(connections, 10, 10, Id="Start")
+
+
 
 #print "Connections:", getinfo
 print connections
+textNImg.WriteAll()
