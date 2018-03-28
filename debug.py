@@ -5,10 +5,10 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-SW1 = 21
-SW2 = 16
+SW1 = 16
+SW2 = 19
 SW3 = 20
-SW4 = 19
+SW4 = 21
 SW5 = 26
 
 WHITE = 1
