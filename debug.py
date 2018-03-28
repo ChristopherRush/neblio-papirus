@@ -69,11 +69,11 @@ while True:
         connections = ('Connections: %d' % get_connection)
         blocks = ('Blocks: %d' % get_blocks)
 
-        textNImg.AddText((version), 10, 10, Id="Start")
-        textNImg.AddText((balance), 10, 30, Id="Start")
-        textNImg.AddText((stake), 10, 50, Id="Start")
-        textNImg.AddText((connections), 10, 70, Id="Start")
-        textNImg.AddText((blocks), 10, 90, Id="Start")
+        textNImg.AddText((version), 10, 10, Id="1")
+        textNImg.AddText((balance), 10, 30, Id="2")
+        textNImg.AddText((stake), 10, 50, Id="3")
+        textNImg.AddText((connections), 10, 70, Id="4")
+        textNImg.AddText((blocks), 10, 90, Id="5")
         textNImg.WriteAll()
 
     sleep(0.1)
