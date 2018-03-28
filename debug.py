@@ -56,10 +56,24 @@ while True:
         textNImg = PapirusComposite() #Clears the draw buffer
         papirus.clear() #Clear the display
 
-        get_connection = rpc_connection.getinfo()["connections"]["version"]
-        connections = ('Connections: %d' % get_connection[0])
 
-        textNImg.AddText((connections), 10, 10, Id="Start")
+        get_version = rpc_connection.getinfo()["version"]
+        get_balance = rpc_connection.getinfo()["balance"]
+        get_stake = rpc_connection.getinfo()["stake"]
+        get_connection = rpc_connection.getinfo()["connections"]
+        get_blocks = rpc_connection.getinfo()["blocks"]
+
+        version = ('Version: %s' % get_version)
+        balance = ('Balance: %d' % get_balance)
+        stake = ('Stake: %d' % get_stake)
+        connections = ('Connections: %d' % get_connection)
+        blocks = ('Blocks: %d' % get_blocks)
+
+        textNImg.AddText((version), 10, 10, Id="Start")
+        textNImg.AddText((balance), 10, 30, Id="Start")
+        textNImg.AddText((stake), 10, 50, Id="Start")
+        textNImg.AddText((connections), 10, 70, Id="Start")
+        textNImg.AddText((blocks), 10, 90, Id="Start")
         textNImg.WriteAll()
 
     sleep(0.1)
