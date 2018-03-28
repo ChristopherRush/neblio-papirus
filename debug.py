@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 from papirus import Papirus
-from EPD import EPD
 from time import sleep
 from papirus import PapirusImage
 from papirus import PapirusComposite
@@ -21,7 +20,7 @@ GPIO.setup(SW2, GPIO.IN)
 GPIO.setup(SW3, GPIO.IN)
 GPIO.setup(SW4, GPIO.IN)
 
-epd.clear()
+
 
 textNImg = PapirusComposite()
 
@@ -40,7 +39,6 @@ while True:
     if (GPIO.input(SW3) == False) and (GPIO.input(SW4) == False) :
         print "Exit"
         sleep(0.2)
-        papirus.clear()
         sys.exit()
 
     if GPIO.input(SW1) == False:
@@ -50,7 +48,7 @@ while True:
         print "3"
 
     if GPIO.input(SW4) == False:
-        epd.clear() 
+        textNImg.clear()
         print "4"
         get_connection = rpc_connection.getinfo()["connections"]
         connections = ('Connections: %d' % get_connection)
