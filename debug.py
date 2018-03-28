@@ -37,7 +37,7 @@ while True:
     if (GPIO.input(SW3) == False) and (GPIO.input(SW4) == False) :
         print "Exit"
         sleep(0.2)
-        papirus.clear()
+        Papirus.clear()
         sys.exit()
 
     if GPIO.input(SW1) == False:
