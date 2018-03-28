@@ -62,7 +62,7 @@ while True:
         get_stake = rpc_connection.getinfo()["stake"]
         get_connection = rpc_connection.getinfo()["connections"]
         get_blocks = rpc_connection.getinfo()["blocks"]
-        get_pos = rpc_connection.getinfo()["proof-of-stake"]
+        get_pos = rpc_connection.getinfo()["proofofstake"]
 
         version = ('Version: %s' % get_version)
         balance = ('Balance: %d' % get_balance)
