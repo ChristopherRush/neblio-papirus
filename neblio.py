@@ -9,4 +9,5 @@ rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxna
 getinfo = rpc_connection.getinfo()["connections"]
 
 text.write("Connections:", getinfo)
+text.write(text, [size = 12 ],[maxLines = 2])
 print "Connections:", getinfo
