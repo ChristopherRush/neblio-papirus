@@ -21,7 +21,7 @@ GPIO.setup(SW3, GPIO.IN)
 GPIO.setup(SW4, GPIO.IN)
 
 
-
+papirus = Papirus()
 textNImg = PapirusComposite()
 
 textNImg.AddText("Press a button", 50, 5, Id="Start" )
@@ -48,8 +48,9 @@ while True:
         print "3"
 
     if GPIO.input(SW4) == False:
-        textNImg.clear()
+
         print "4"
+        papirus.clear()
         get_connection = rpc_connection.getinfo()["connections"]
         connections = ('Connections: %d' % get_connection)
         textNImg.AddText((connections), 10, 10, Id="Start")
