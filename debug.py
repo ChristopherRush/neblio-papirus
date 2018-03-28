@@ -49,6 +49,7 @@ while True:
         print "3"
 
     if GPIO.input(SW4) == False:
+        Papirus.clear()
         print "4"
         get_connection = rpc_connection.getinfo()["connections"]
         connections = ('Connections: %d' % get_connection)
