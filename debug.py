@@ -22,7 +22,7 @@ GPIO.setup(SW4, GPIO.IN)
 textNImg = PapirusComposite()
 
 textNImg.AddText("Press a button", 20, 5, Id="Start" )
-textNImg.AddImg("images/neblio.bmp",20,20, Id="BigImg")
+textNImg.AddImg("images/neblio.bmp", Id="BigImg")
 textNImg.WriteAll()
 
 
