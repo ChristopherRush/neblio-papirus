@@ -25,28 +25,28 @@ GPIO.setup(SW4, GPIO.IN)
 
 while True:
         # Exit when SW1 and SW2 are pressed simultaneously
-        if (GPIO.input(SW1) == False) and (GPIO.input(SW2) == False) :
-            write_text(papirus, "Exiting ...", SIZE)
-            sleep(0.2)
-            papirus.clear()
-            sys.exit()
+    if (GPIO.input(SW1) == False) and (GPIO.input(SW2) == False) :
+        write_text(papirus, "Exiting ...", SIZE)
+        sleep(0.2)
+        papirus.clear()
+        sys.exit()
 
-        if GPIO.input(SW1) == False:
-            write_text(papirus, "One", SIZE)
+    if GPIO.input(SW1) == False:
+        write_text(papirus, "One", SIZE)
 
-        if GPIO.input(SW2) == False:
-            write_text(papirus, "Two", SIZE)
+    if GPIO.input(SW2) == False:
+        write_text(papirus, "Two", SIZE)
 
-        if GPIO.input(SW3) == False:
-            write_text(papirus, "Three", SIZE)
+    if GPIO.input(SW3) == False:
+        write_text(papirus, "Three", SIZE)
 
-        if GPIO.input(SW4) == False:
-            write_text(papirus, "Four", SIZE)
+    if GPIO.input(SW4) == False:
+        write_text(papirus, "Four", SIZE)
 
-        if (SW5 != -1) and (GPIO.input(SW5) == False):
-            write_text(papirus, "Five", SIZE)
+    if (SW5 != -1) and (GPIO.input(SW5) == False):
+        write_text(papirus, "Five", SIZE)
 
-        sleep(0.1)
+    sleep(0.1)
 
 def write_text(papirus, text, size):
 
