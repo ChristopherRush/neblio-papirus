@@ -38,6 +38,7 @@ while True:
         # Exit when SW1 and SW2 are pressed simultaneously
     if (GPIO.input(SW3) == False) and (GPIO.input(SW4) == False) :
         print "Exit"
+        papirus.clear()
         sleep(0.2)
         sys.exit()
 
@@ -50,6 +51,7 @@ while True:
     if GPIO.input(SW4) == False:
 
         print "4"
+        textNImg = PapirusComposite()
         papirus.clear()
         get_connection = rpc_connection.getinfo()["connections"]
         connections = ('Connections: %d' % get_connection)
