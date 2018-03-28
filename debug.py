@@ -1,20 +1,14 @@
 import RPi.GPIO as GPIO
 from papirus import Papirus
 from time import sleep
-from PIL import Image
-from PIL import ImageDraw
-from PIL import ImageFont
+from papirus import PapirusImage
+from papirus import PapirusComposite
 
 SW1 = 16
 SW2 = 19
 SW3 = 20
 SW4 = 21
-SW5 = 26
 
-WHITE = 1
-BLACK = 0
-
-SIZE = 27
 
 GPIO.setmode(GPIO.BCM)
 
@@ -23,9 +17,21 @@ GPIO.setup(SW2, GPIO.IN)
 GPIO.setup(SW3, GPIO.IN)
 GPIO.setup(SW4, GPIO.IN)
 
+
+
+textNImg = PapirusComposite()
+
+textNImg.AddText("Press a button", 20, 5, Id="Start" )
+textNImg.AddImg("images/neblio.bmp",20,20, Id="BigImg")
+textNImg.WriteAll()
+
+
+
+
+
 while True:
         # Exit when SW1 and SW2 are pressed simultaneously
-    if (GPIO.input(SW1) == False) and (GPIO.input(SW2) == False) :
+    if (GPIO.input(SW3) == False) and (GPIO.input(SW4) == False) :
         print "Exit"
         sleep(0.2)
         papirus.clear()
@@ -33,9 +39,6 @@ while True:
 
     if GPIO.input(SW1) == False:
         print "1"
-
-    if GPIO.input(SW2) == False:
-        print "2"
 
     if GPIO.input(SW3) == False:
         print "3"
