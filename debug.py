@@ -1,6 +1,6 @@
 from papirus import PapirusImage
 
-image = PapirusImage([rotation = rot])
+image = PapirusImage()
 
 # easy write image to screen
 # image.write(path)
