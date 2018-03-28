@@ -69,7 +69,7 @@ while True:
         stake = ('Stake: %d' % get_stake)
         connections = ('Connections: %d' % get_connection)
         blocks = ('Blocks: %d' % get_blocks)
-        pos = ('Proof of Stake: %d' % get_pos)
+        pos = ('Proof-of-Stake: %d' % get_pos)
 
         textNImg.AddText((version), 10, 10, Id="1")
         textNImg.AddText((balance), 10, 30, Id="2")
