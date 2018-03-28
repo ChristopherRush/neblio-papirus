@@ -3,6 +3,7 @@ from papirus import Papirus
 from time import sleep
 from papirus import PapirusImage
 from papirus import PapirusComposite
+from bitcoinrpc.authproxy import AuthServiceProxy
 
 SW1 = 16
 SW2 = 19
@@ -47,5 +48,9 @@ while True:
 
     if GPIO.input(SW4) == False:
         print "4"
+        get_connection = rpc_connection.getinfo()["connections"]
+        connections = ('Connections: %d' % get_connection)
+        textNImg.AddText((connections), 10, 10, Id="Start")
+        textNImg.WriteAll()
 
     sleep(0.1)
