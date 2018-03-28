@@ -10,8 +10,8 @@ rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxna
 getinfo = rpc_connection.getinfo()["connections"]
 
 
-connections = "Connections:", getinfo
-textNImg.AddText(connections, 10, 10, Id="Start")
+connections = "Connections:" % getinfo
+textNImg.AddText((connections), 10, 10, Id="Start")
 
 
 
