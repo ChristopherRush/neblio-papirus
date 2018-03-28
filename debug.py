@@ -62,12 +62,14 @@ while True:
         get_stake = rpc_connection.getinfo()["stake"]
         get_connection = rpc_connection.getinfo()["connections"]
         get_blocks = rpc_connection.getinfo()["blocks"]
+        get_pos = rpc_connection.getinfo()["proof-of-stake"]
 
         version = ('Version: %s' % get_version)
         balance = ('Balance: %d' % get_balance)
         stake = ('Stake: %d' % get_stake)
         connections = ('Connections: %d' % get_connection)
         blocks = ('Blocks: %d' % get_blocks)
+        pos = ('Proof of Stake: %d' % get_pos)
 
         textNImg.AddText((version), 10, 10, Id="1")
         textNImg.AddText((balance), 10, 30, Id="2")
@@ -75,6 +77,7 @@ while True:
         textNImg.AddText((connections), 10, 70, Id="4")
         textNImg.AddText((blocks), 10, 90, Id="5")
         textNImg.AddText("-----Difficulty-----", 10, 110, Id="6")
+        textNImg.AddText((pos), 10, 130, Id="7")
         textNImg.WriteAll()
 
     sleep(0.1)
