@@ -5,6 +5,8 @@ from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
+rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxnatVGpW9tvXhuXdTHt@127.0.0.1:8332")
+
 SW1 = 16
 SW2 = 19
 SW3 = 20
