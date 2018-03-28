@@ -28,7 +28,7 @@ textNImg.AddText((staking), 10, 50, Id="line3" )
 
 textNImg.AddText((currentblock), 10, 70, Id="line4" )
 
-textNImg.AddText((difficulty), 10, 70, Id="line5" )
+textNImg.AddText((difficulty), 10, 90, Id="line5" )
 
 
 
