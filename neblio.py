@@ -20,7 +20,7 @@ textNImg.AddText((connections), 10, 10, Id="Start")
 
 textNImg.AddText((balance), 10, 30, Id="line2" )
 
-textNImg.AddText((balance), 10, 50, Id="line3" )
+textNImg.AddText((staking), 10, 50, Id="line3" )
 
 
 
