@@ -10,7 +10,7 @@ rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxna
 getinfo = rpc_connection.getinfo()["connections"]
 
 
-connections = ('Connections:' %d(getinfo))
+connections = ('Connections: %d' % getinfo)
 textNImg.AddText((connections), 10, 10, Id="Start")
 
 
