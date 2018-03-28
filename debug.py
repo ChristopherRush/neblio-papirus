@@ -74,7 +74,7 @@ while True:
         textNImg.AddText((stake), 10, 50, Id="3")
         textNImg.AddText((connections), 10, 70, Id="4")
         textNImg.AddText((blocks), 10, 90, Id="5")
-        textNImg.AddText("-----------Difficulty-----------", 10, 110, Id="6")
+        textNImg.AddText("-----Difficulty-----", 10, 110, Id="6")
         textNImg.WriteAll()
 
     sleep(0.1)
