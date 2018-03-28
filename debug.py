@@ -1,4 +1,6 @@
 import RPi.GPIO as GPIO
+import sys
+
 from papirus import Papirus
 from time import sleep
 from papirus import PapirusImage
@@ -51,10 +53,12 @@ while True:
     if GPIO.input(SW4) == False:
 
         print "4"
-        textNImg = PapirusComposite()
-        papirus.clear()
-        get_connection = rpc_connection.getinfo()["connections"]
-        connections = ('Connections: %d' % get_connection)
+        textNImg = PapirusComposite() #Clears the draw buffer
+        papirus.clear() #Clear the display
+
+        get_connection = rpc_connection.getinfo()["connections"]["version"]
+        connections = ('Connections: %d' % get_connection[0])
+
         textNImg.AddText((connections), 10, 10, Id="Start")
         textNImg.WriteAll()
 
