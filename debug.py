@@ -23,7 +23,7 @@ GPIO.setup(SW2, GPIO.IN)
 GPIO.setup(SW3, GPIO.IN)
 GPIO.setup(SW4, GPIO.IN)
 
-   while True:
+while True:
         # Exit when SW1 and SW2 are pressed simultaneously
         if (GPIO.input(SW1) == False) and (GPIO.input(SW2) == False) :
             write_text(papirus, "Exiting ...", SIZE)
