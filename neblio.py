@@ -8,6 +8,6 @@ text = PapirusText()
 rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxnatVGpW9tvXhuXdTHt@127.0.0.1:8332")
 getinfo = rpc_connection.getinfo()["connections"]
 
-text.write("Connections:", getinfo, size = 12)
+text.write("Connections:" getinfo, size = 12)
 #text.write(text, size = 12,[ma)
 print "Connections:", getinfo
