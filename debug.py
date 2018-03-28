@@ -1,7 +1,7 @@
 from papirus import PapirusComposite
 
 # Calling PapirusComposite this way will mean nothing is written to the screen until WriteAll is called
-textNImg = PapirusComposite(False [, rotation = rot])
+textNImg = PapirusComposite()
 
 # Write text to the screen at selected point, with an Id
 # Nothing will show on the screen
