@@ -6,13 +6,17 @@ config_path = '/home/pi/.neblio/neblio.conf'
 config = ConfigParser.ConfigParser()
 config.read(config_path)
 
+#print config.get('set','rpcuser'
+
+
+
 from papirus import Papirus
 from time import sleep
 from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
-rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%(rpcuser, rpcpassword))
+rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('set','rpcuser')),(config.get('set','rpcpassword'))))
 
 try:
     rpc_connection.getinfo()
