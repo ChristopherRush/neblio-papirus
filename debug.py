@@ -1,9 +1,10 @@
 import RPi.GPIO as GPIO
 import sys
-sys.path.insert(0, '/.neblio/neblio.conf')
-import neblio.conf as cfg
 
-print cfg.rpcuser
+import ConfigParser
+config = ConfigParser.ConfigParser()
+config.read('/.neblio/neblio.conf')
+print config.get('rpcuser')
 
 from papirus import Papirus
 from time import sleep
