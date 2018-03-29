@@ -63,13 +63,13 @@ while True:
         get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
 
         staking = ('Staking: %s' % get_staking)
-        currentblocksize = ('Current Block Size: %f' % get_curr_block_size)
-        currentblocktx = ('Current Block Tx: %f' % get_curr_block_tx)
+        currentblocksize = ('Block Size: %f' % get_curr_block_size)
+        currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
         pooledtx = ('PooledTx: %d' % get_pooledtx)
-        search_int = ('Search Interval: %d' % get_search)
+        search_int = ('Search: %d' % get_search)
         weight = ('Weight: %f' % get_weight)
         netweight = ('Net Weight: %f' % get_netweight)
-        expectedtime = ('Expected Time: %f' % get_exp_time)
+        expectedtime = ('Expected: %f' % get_exp_time)
 
 
         textNImg.AddText((staking), 10, 10, Id="1")
