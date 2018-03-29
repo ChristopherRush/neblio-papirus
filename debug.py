@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import sys
-from ~/.neblio/neblio.conf import *
+from /.neblio/neblio.conf import *
 
 print rpcuser
 
