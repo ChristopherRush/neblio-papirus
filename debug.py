@@ -95,7 +95,7 @@ while True:
         textNImg.WriteAll()
 
     if GPIO.input(SW4) == False:
-
+        print "4"
         textNImg = PapirusComposite() #Clears the draw buffer
         papirus.clear() #Clear the display
 
