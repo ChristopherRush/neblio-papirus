@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import sys
 sys.path.insert(0, '/.neblio/neblio.conf')
-import neblio.conf
+from neblio.conf import *
 
 print rpcuser
 
