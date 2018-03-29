@@ -55,7 +55,7 @@ while True:
 
         get_staking = rpc_connection.getstakinginfo()["staking"]
         get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
-        get_curr_block_size_tx = rpc_connection.getstakinginfo()["currentblocksizetx"]
+        get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
         get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
         get_search = rpc_connection.getstakinginfo()["search-interval"]
         get_weight = rpc_connection.getstakinginfo()["weight"]
@@ -64,7 +64,7 @@ while True:
 
         staking = ('Staking: %s' % get_staking)
         currentblocksize = ('Current Block Size: %f' % get_curr_block_size)
-        currentblocksizetx = ('Current Block SizeTx: %f' % get_curr_block_size_tx)
+        currentblocktx = ('Current Block Tx: %f' % get_curr_block_tx)
         pooledtx = ('PooledTx: %d' % get_pooledtx)
         search_int = ('Search Interval: %d' % get_search)
         weight = ('Weight: %f' % get_weight)
@@ -74,7 +74,7 @@ while True:
 
         textNImg.AddText((staking), 10, 10, Id="1")
         textNImg.AddText((currentblocksize), 10, 30, Id="2")
-        textNImg.AddText((currentblocksizetx), 10, 50, Id="3")
+        textNImg.AddText((currentblocktx), 10, 50, Id="3")
         textNImg.AddText((pooledtx), 10, 70, Id="4")
         textNImg.AddText((search_int), 10, 90, Id="5")
         textNImg.AddText((weight), 10, 110, Id="6")
