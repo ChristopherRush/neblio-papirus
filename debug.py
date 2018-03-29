@@ -35,11 +35,11 @@ textNImg = PapirusComposite()
 if server_status == True:
     textNImg.AddText("Press a button", 50, 5, Id="Start" )
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
-    textNImg.AddText("Serving Running: Active ", 20, 156, Id="bottom")
+    textNImg.AddText("Server Status: Active ", 10, 156, Id="bottom")
 else:
     textNImg.AddText("Press a button", 50, 5, Id="Start" )
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
-    textNImg.AddText("Serving Running: Down ", 20, 156, Id="bottom")
+    textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
 textNImg.WriteAll()
 
 
