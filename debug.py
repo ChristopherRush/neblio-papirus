@@ -7,8 +7,10 @@ from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
+rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxnatVGpW9tvXhuXdTHt@127.0.0.1:8332")
+
 try:
-    rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxnatVGpW9tvXhuXdTHt@127.0.0.1:8332")
+    rpc_connection.getinfo()
     server_status = True
 except:
     server_status=False
