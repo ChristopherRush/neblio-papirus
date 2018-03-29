@@ -6,10 +6,12 @@ import sys
 #config.read('/home/pi/.neblio/neblio.conf')
 #print config.get('set','rpcuser')
 
-config_path='/home/pi/.neblio/neblio.conf'
-sys.path.insert(0, config_path)
+#config_path='/home/pi/.neblio/neblio.conf'
+sys.path.insert(0, '/home/pi/.neblio/neblio.conf')
 
-import neblio.conf
+from neblio.conf import *
+
+print rpcuser
 
 from papirus import Papirus
 from time import sleep
