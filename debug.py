@@ -27,7 +27,7 @@ papirus = Papirus()
 textNImg = PapirusComposite()
 
 textNImg.AddText("Press a button", 50, 5, Id="Start" )
-textNImg.AddImg("images/StakeBox-Black.bmp",55,0,(150,150), Id="BigImg")
+textNImg.AddImg("images/StakeBox-Black.bmp",55,5,(150,150), Id="BigImg")
 textNImg.AddText("SW3 & SW4 to EXIT", 20, 156, Id="bottom" )
 
 textNImg.WriteAll()
