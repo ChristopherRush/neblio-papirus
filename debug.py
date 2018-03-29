@@ -1,14 +1,6 @@
 import RPi.GPIO as GPIO
 import sys
-import ConfigParser
-
-config_path = '/home/pi/.neblio/neblio.conf'
-config = ConfigParser.ConfigParser()
-config.read(config_path)
-
-#print config.get('set','rpcuser'
-
-
+import ConfigParser #used to parse config file
 
 from papirus import Papirus
 from time import sleep
@@ -16,8 +8,15 @@ from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
+#Parse config file so you can read its values
+config_path = '/home/pi/.neblio/neblio.conf' #change this path for other config files
+config = ConfigParser.ConfigParser()
+config.read(config_path)
+
+#Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('set','rpcuser')),(config.get('set','rpcpassword'))))
 
+#Get server status must run xxxx-qt -server
 try:
     rpc_connection.getinfo()
     server_status = True
@@ -25,24 +24,26 @@ except:
     server_status=False
     pass
 
+#Button GPIO pins
 SW1 = 16
 SW2 = 19
 SW3 = 20
 SW4 = 21
 
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM) #Use BCM GPIO numbering
 
+#Set GPIO pins as inputs
 GPIO.setup(SW1, GPIO.IN)
 GPIO.setup(SW2, GPIO.IN)
 GPIO.setup(SW3, GPIO.IN)
 GPIO.setup(SW4, GPIO.IN)
 
 
-papirus = Papirus()
-textNImg = PapirusComposite()
+papirus = Papirus() #create papirus object
+textNImg = PapirusComposite() #create variable to store image/text
 
-
+#Boot image when started
 if server_status == True:
     textNImg.AddText("Press a button", 50, 5, Id="Start" )
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
@@ -52,9 +53,6 @@ else:
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
     textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
 textNImg.WriteAll()
-
-
-
 
 
 while True:
@@ -73,7 +71,7 @@ while True:
         textNImg = PapirusComposite() #Clears the draw buffer
         papirus.clear() #Clear the display
 
-
+        #Get info from RPC connection
         get_staking = rpc_connection.getstakinginfo()["staking"]
         get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
         get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
@@ -83,6 +81,7 @@ while True:
         get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
         get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
 
+        #Append value to string
         staking = ('Staking: %s' % get_staking)
         currentblocksize = ('Block Size: %f' % get_curr_block_size)
         currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
@@ -92,7 +91,7 @@ while True:
         netweight = ('Net Weight: %d' % get_netweight)
         expectedtime = ('Expected: %f' % get_exp_time)
 
-
+        #Write to the PaPiRus screen
         textNImg.AddText((staking), 10, 10, Id="1")
         textNImg.AddText((currentblocksize), 10, 30, Id="2")
         textNImg.AddText((currentblocktx), 10, 50, Id="3")
