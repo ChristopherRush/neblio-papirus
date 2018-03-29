@@ -67,8 +67,8 @@ while True:
         currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
         pooledtx = ('PooledTx: %d' % get_pooledtx)
         search_int = ('Search: %d' % get_search)
-        weight = ('Weight: %f' % get_weight)
-        netweight = ('Net Weight: %f' % get_netweight)
+        weight = ('Weight: %d' % get_weight)
+        netweight = ('Net Weight: %d' % get_netweight)
         expectedtime = ('Expected: %f' % get_exp_time)
 
 
