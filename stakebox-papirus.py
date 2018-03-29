@@ -16,7 +16,7 @@ config.read(config_path)
 #Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('set','rpcuser')),(config.get('set','rpcpassword'))))
 
-#Get server status must run xxxx-qt -server
+#Get server status must run xxxx-qt -server first
 try:
     rpc_connection.getinfo()
     server_status = True
