@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 import sys
+from ~/.neblio/neblio.conf import *
+
+print rpcuser
 
 from papirus import Papirus
 from time import sleep
