@@ -7,7 +7,12 @@ from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
-rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxnatVGpW9tvXhuXdTHt@127.0.0.1:8332")
+try:
+    rpc_connection = AuthServiceProxy("http://nebliorpc:Dtmqe2aj1Fc35nKMKMrwyCKEYxnatVGpW9tvXhuXdTHt@127.0.0.1:8332")
+    server_status = True
+except:
+    server_status=False
+    pass
 
 SW1 = 16
 SW2 = 19
@@ -26,10 +31,15 @@ GPIO.setup(SW4, GPIO.IN)
 papirus = Papirus()
 textNImg = PapirusComposite()
 
-textNImg.AddText("Press a button", 50, 5, Id="Start" )
-textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
-textNImg.AddText("SW3 & SW4 to EXIT", 20, 156, Id="bottom" )
 
+if server_status == True:
+    textNImg.AddText("Press a button", 50, 5, Id="Start" )
+    textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
+    textNImg.AddText("Serving Running:%s ", 20, 156, Id="bottom" % server_status)
+else:
+    textNImg.AddText("Press a button", 50, 5, Id="Start" )
+    textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
+    textNImg.AddText("Serving Running:%s ", 20, 156, Id="bottom" % server_status)
 textNImg.WriteAll()
 
 
