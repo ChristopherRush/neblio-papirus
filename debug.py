@@ -4,7 +4,7 @@ import sys
 import ConfigParser
 config = ConfigParser.ConfigParser()
 config.read('/.neblio/neblio.conf')
-print config.get('SET','rpcuser')
+print config.get('set','rpcuser')
 
 from papirus import Papirus
 from time import sleep
