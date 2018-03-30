@@ -19,7 +19,29 @@ You will need the following hardware to setup your StakeBox Display:
 
 Before you install and launch the software to display your staking information there are some perquisites that need to be done:
 
-1. You need to make sure that you open up your staking application with the option '-server' so that it creates an RPC server when the program runs i.e. from the command line you will need to enter ```neblio-qt -server```
+1. You will need to create a configuration file for the RPC server that includes details such as a username and password to connect to the server in your stakebox file directory.
+e.g. ```nano neblio.conf /home/pi/.neblio/```
+
+```
+[set]
+rpcpassword=neblio
+rpcuser=nebliorpc
+rpcport=8332
+rpcallowip=127.0.0.1
+```
+
+Once this configuration file has been created, when you launch the application with ```neblio-qt -server``` it will setup the server with those settings.
+
+2. You need to make sure that you open up your staking application with the option '-server' so that it creates an RPC server when the program runs i.e. from the command line you will need to enter ```neblio-qt -server``` or which ever command is used to launch your staking application.
+
+3. In the stakebox-papirus.py script you will need to change the location of the config file so it can access that information and connect to the server using those credentials.
+
+```
+config_path = '/home/pi/.neblio/neblio.conf' #change this path for other config files
+```
+
+Your configuration file should always be created in the application directory
+
 
 ### Auto Installation
 
