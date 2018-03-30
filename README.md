@@ -1,6 +1,6 @@
 # StakeBox PaPiRus display
 <p align="center">
-  <img src="https://cdn.shopify.com/s/files/1/2685/8754/files/logo-wide_x200.png">
+  <img width="400" src="https://cdn.shopify.com/s/files/1/2685/8754/files/logo-wide_x200.png">
 </p>
 
 This project uses the PaPiRus e-ink display to show all your StakeBox statistics such as network status, staking information as well as your current address and QR code for transferring coins/tokens to your wallet. This project is currently compatible with the following StakeBoxes:
