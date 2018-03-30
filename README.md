@@ -1,6 +1,6 @@
 # StakeBox PaPiRus display
 
-![staekbox-display](https://cdn.shopify.com/s/files/1/2187/3161/products/d090dbd41bef0a6a177712ab4734a422_1024x.png?v=1520446426)
+![staekbox-display](https://cdn.shopify.com/s/files/1/2685/8754/files/logo-wide_x200.png?)
 
 This project uses the PaPiRus e-ink display to show all your StakeBox statistics such as network status, staking information as well as your current address and QR code for transferring coins/tokens to your wallet. This project is currently compatible with the following StakeBoxes:
 - [Neblio](https://www.stakebox.org/collections/stakeboxes/products/neblio-stakebox)
