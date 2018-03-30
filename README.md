@@ -20,7 +20,7 @@ You will need the following hardware to setup your StakeBox Display:
 Before you install and launch the software to display your staking information there are some perquisites that need to be done:
 
 1. You will need to create a configuration file for the RPC server that includes details such as a username and password to connect to the server in your stakebox file directory.
-e.g. ```nano neblio.conf /home/pi/.neblio/```
+e.g. ```nano /home/pi/.neblio/neblio.conf```
 
 ```
 [set]
@@ -36,7 +36,7 @@ Once this configuration file has been created, when you launch the application w
 
 3. In the stakebox-papirus.py script you will need to change the location of the config file so it can access that information and connect to the server using those credentials.
 
-```
+```python
 config_path = '/home/pi/.neblio/neblio.conf' #change this path for other config files
 ```
 
@@ -44,6 +44,12 @@ Your configuration file should always be created in the application directory
 
 
 ### Auto Installation
+
+```bash
+# Run this line and the weather station will be setup and installed
+curl -sSL https://github.com/ChristopherRush/stakebox-papirus/blob/master/install.sh | sudo bash
+```
+
 
 ### Manual Installation
 
