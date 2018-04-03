@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import sys
 import ConfigParser #used to parse config file
+import os
 
 from papirus import Papirus
 from time import sleep
