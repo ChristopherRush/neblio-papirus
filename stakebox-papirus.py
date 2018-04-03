@@ -11,25 +11,25 @@ from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
 nebliopath='/home/pi/.neblio/neblio.conf'
+qtumpath=''
+reddcoinpath=''
+trezarcoinpath=''
+
+#Check with staking application is installed
 if os.path.isfile(nebliopath):
     config_path = nebliopath
     print "Neblio installed"
 else:
     print "Neblio not installed"
+
 #Parse config file so you can read its values
-#config_path = '/home/pi/.neblio/neblio.conf' #change this path for other config files
-#config = ConfigParser.ConfigParser()
-#config.read(config_path)
 with open(config_path, 'r') as f:
-    a = '[config]\n'
+    a = '[config]\n' #Adds section header to the string. By default the staking app cannot read the config file if there is a section header
     b = f.read()
     config_string = a + b
 buf = StringIO.StringIO(config_string)
 config = ConfigParser.ConfigParser()
 config.readfp(buf)
-
-
-
 
 #Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
@@ -123,7 +123,7 @@ while True:
     if GPIO.input(SW4) == False:
         print "4"
         textNImg = PapirusComposite() #Clears the draw buffer
-        papirus.clear() #Clear the display
+        #papirus.clear() #Clear the display
 
 
         get_version = rpc_connection.getinfo()["version"]
