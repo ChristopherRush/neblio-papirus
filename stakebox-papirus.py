@@ -12,6 +12,7 @@ from bitcoinrpc.authproxy import AuthServiceProxy
 nebliopath='/home/pi/.neblio/neblio.conf'
 if os.path.isfile(nebliopath):
     config_path = nebliopath
+    print "Neblio installed"
 else:
     print "Neblio not installed"
 #Parse config file so you can read its values
@@ -21,13 +22,13 @@ config.read(config_path)
 
 #Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
-
+print rpc_connection
 #Get server status must run xxxx-qt -server first
 try:
     rpc_connection.getinfo()
     server_status = True
 except:
-    server_status=False
+    server_status = False
     pass
 
 #Button GPIO pins
