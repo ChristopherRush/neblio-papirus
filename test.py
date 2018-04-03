@@ -12,6 +12,4 @@ config = ConfigParser.ConfigParser()
 config.read(config_string)
 print config_string
 
-test = config.get('dummy_section', 'rpcuser')
-
-print test
+#test = config.get('dummy_section', 'rpcuser')
