@@ -8,7 +8,7 @@ pip install python-bitcoinrpc
 
 git clone https://github.com/ChristopherRush/stakebox-papirus.git
 
-neblioqt=/home/pi/.neblio/neblio-qt
+neblioqt=/home/pi/Desktop/neblio-qt
 
 if [ -e "$neblioqt" ]; then
     echo "neblio installed....checking config file"
