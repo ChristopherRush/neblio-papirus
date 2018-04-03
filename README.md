@@ -50,7 +50,7 @@ Your configuration file should always be created in the application directory
 
 ```bash
 # Run this line and the weather station will be setup and installed
-curl -sSL https://github.com/ChristopherRush/stakebox-papirus/blob/master/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/ChristopherRush/stakebox-papirus/master/install.sh | sudo bash
 ```
 
 
