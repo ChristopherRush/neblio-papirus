@@ -5,7 +5,7 @@ nebliopath='/home/pi/.neblio/neblio.conf'
 
 
 with open(nebliopath, 'r') as f:
-    a = '[dummy_section]\n'
+    a = '[dummy]\n'
     b = f.read()
     config_string = a + b
 
@@ -14,7 +14,7 @@ config = ConfigParser.ConfigParser()
 
 config.readfp(buf)
 
-print config.get('dummy_section','rpcuser')
+print config.get('dummy','rpcuser')
 
 
 

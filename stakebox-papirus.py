@@ -27,13 +27,13 @@ with open(config_path, 'r') as f:
     a = '[config]\n' #Adds section header to the string. By default the staking app cannot read the config file if there is a section header
     b = f.read()
     config_string = a + b
-buf = StringIO.StringIO(config_string)
+buf = StringIO.StringIO(config_string) #Creates a buffer
 config = ConfigParser.ConfigParser()
 config.readfp(buf)
 
 #Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
-print rpc_connection
+
 #Get server status must run xxxx-qt -server first
 try:
     rpc_connection.getinfo()
@@ -87,7 +87,7 @@ while True:
     if GPIO.input(SW3) == False:
         print "3"
         textNImg = PapirusComposite() #Clears the draw buffer
-        papirus.clear() #Clear the display
+        #papirus.clear() #Clear the display
 
         #Get info from RPC connection
         get_staking = rpc_connection.getstakinginfo()["staking"]
