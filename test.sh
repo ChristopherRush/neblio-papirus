@@ -12,7 +12,6 @@ if [ -e "$neblioqt" ]; then
         echo "File does not exist"
         touch $neblio
         echo "neblio.conf file created"
-        echo "[config]" >> $neblio
         echo "rpcpassword=$RPCPASSWORD" >> $neblio
         echo "rpcuser=nebliorpc" >> $neblio
         echo "rpcport=8332" >> $neblio

@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import sys
 import ConfigParser #used to parse config file
 import os
+import StringIO
 
 from papirus import Papirus
 from time import sleep
@@ -17,8 +18,18 @@ else:
     print "Neblio not installed"
 #Parse config file so you can read its values
 #config_path = '/home/pi/.neblio/neblio.conf' #change this path for other config files
+#config = ConfigParser.ConfigParser()
+#config.read(config_path)
+with open(config_path, 'r') as f:
+    a = '[config]\n'
+    b = f.read()
+    config_string = a + b
+buf = StringIO.StringIO(config_string)
 config = ConfigParser.ConfigParser()
-config.read(config_path)
+config.readfp(buf)
+
+
+
 
 #Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
