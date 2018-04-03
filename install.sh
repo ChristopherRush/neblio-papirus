@@ -6,14 +6,6 @@ sudo apt-get install python-pip git bc i2c-tools fonts-freefont-ttf whiptail mak
 
 pip install python-bitcoinrpc
 
-git clone https://github.com/PiSupply/PaPiRus.git
-
-cd PaPiRus
-
-sudo bash install
-
-cd ..
-
 git clone https://github.com/ChristopherRush/stakebox-papirus.git
 
 RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
@@ -60,3 +52,9 @@ else
     echo "reddcoin not installed on this StakeBox"
 
 fi
+
+#git clone https://github.com/PiSupply/PaPiRus.git
+
+#cd PaPiRus
+
+#sudo bash install
