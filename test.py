@@ -1,5 +1,5 @@
 import ConfigParser
-
+import StringIO
 
 nebliopath='/home/pi/.neblio/neblio.conf'
 
@@ -9,7 +9,10 @@ with open(nebliopath, 'r') as f:
     b = f.read()
     config_string = a + b
 config = ConfigParser.ConfigParser()
-print config.readfp(config_string)
+
+buf = StringIO.StringIO(config_string)
+print config.readfp(buf)
+
 
 
 #test = config.get('dummy_section', 'rpcuser')
