@@ -2,7 +2,7 @@
 
 sudo apt-get update
 
-sudo apt-get install python-virtualenv git bc i2c-tools fonts-freefont-ttf whiptail make gcc -y
+sudo apt-get install python-pip git bc i2c-tools fonts-freefont-ttf whiptail make gcc -y
 
 pip install python-bitcoinrpc
 
