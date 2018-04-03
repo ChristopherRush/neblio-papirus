@@ -9,12 +9,12 @@ with open(nebliopath, 'r') as f:
     b = f.read()
     config_string = a + b
 
-print config_string[1]
 buf = StringIO.StringIO(config_string)
 config = ConfigParser.ConfigParser()
 
 config.readfp(buf)
 
+print config.get('dummy_section','rpcuser')
 
 
 
