@@ -12,7 +12,7 @@ from bitcoinrpc.authproxy import AuthServiceProxy
 
 nebliopath='/home/pi/.neblio/neblio.conf'
 qtumpath=''
-reddcoinpath=''
+reddcoinpath='/home/pi/.reddcoin/reddcoin.conf'
 trezarcoinpath=''
 
 #Check with staking application is installed
@@ -21,6 +21,12 @@ if os.path.isfile(nebliopath):
     print "Neblio installed"
 else:
     print "Neblio not installed"
+
+if os.path.isfile(reddcoinpath):
+    config_path = reddcoinpath
+    print "Reddcoin installed"
+else:
+    print "Reddcoin not installed"
 
 #Parse config file so you can read its values
 with open(config_path, 'r') as f:
