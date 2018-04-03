@@ -9,4 +9,4 @@ with open(nebliopath, 'r') as f:
 config = ConfigParser.ConfigParser()
 config.read(config_string)
 
-print config.get('dummy_section', 'rpcuser')
+print config.read(config_string)
