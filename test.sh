@@ -5,7 +5,7 @@ if [ -e "$neblio" ]; then
 else
     echo "File does not exist"
     touch $neblio
-    "neblio.conf file created"
+    echo "neblio.conf file created"
     echo "[config]" >> $neblio
     echo "rpcpassword=neblio" >> $neblio
     echo "rpcuser=nebliorpc" >> $neblio
