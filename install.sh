@@ -22,6 +22,7 @@ if [ -e "$neblioqt" ]; then
         touch $neblio
         echo "neblio.conf file created"
         echo "[config]" >> $neblio
+        RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
         echo "rpcpassword=$RPCPASSWORD" >> $neblio
         echo "rpcuser=nebliorpc" >> $neblio
         echo "rpcport=8332" >> $neblio
