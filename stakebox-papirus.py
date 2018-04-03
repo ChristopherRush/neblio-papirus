@@ -8,13 +8,18 @@ from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
+nebliopath='/home/pi/.neblio/neblio.conf'
+if os.path.isfile(nebliopath):
+    config_path = nebliopath
+else:
+    print "Neblio not installed"
 #Parse config file so you can read its values
-config_path = '/home/pi/.neblio/neblio.conf' #change this path for other config files
+#config_path = '/home/pi/.neblio/neblio.conf' #change this path for other config files
 config = ConfigParser.ConfigParser()
 config.read(config_path)
 
 #Server RPC URL
-rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('set','rpcuser')),(config.get('set','rpcpassword'))))
+rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
 
 #Get server status must run xxxx-qt -server first
 try:
