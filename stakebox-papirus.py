@@ -3,6 +3,7 @@ import sys
 import ConfigParser #used to parse config file
 import os
 import StringIO
+import wget
 
 from papirus import Papirus
 from time import sleep
@@ -18,6 +19,7 @@ trezarcoinpath=''
 #Check with staking application is installed
 if os.path.isfile(nebliopath):
     config_path = nebliopath
+#    url = 'explorer.nebl.io/qr/%s' %address
     print "Neblio installed"
 else:
     print "Neblio not installed"
@@ -80,16 +82,14 @@ textNImg.WriteAll()
 
 
 while True:
-        # Exit when SW1 and SW2 are pressed simultaneously
-    if (GPIO.input(SW3) == False) and (GPIO.input(SW4) == False) :
-        print "Exit"
-        papirus.clear()
-        sleep(0.2)
-        sys.exit()
-
     if GPIO.input(SW1) == False:
         print "1"
+        textNImg = PapirusComposite() #Clears the draw buffer
 
+        getaddress = rpc_connection.getaccountaddress()[""]
+        address = ('Address: %s' % getaddress)
+        textNImg.AddText((address), 10, 10, Id="1")
+        textNImg.WriteAll()
     if GPIO.input(SW3) == False:
         print "3"
         textNImg = PapirusComposite() #Clears the draw buffer

@@ -1,4 +1,4 @@
-# StakeBox PaPiRus display
+# StakeBox PaPiRus Display
 <p align="center">
   <img width="400" src="https://cdn.shopify.com/s/files/1/2685/8754/files/logo-wide_x200.png">
 </p>
