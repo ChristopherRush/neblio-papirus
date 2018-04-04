@@ -5,9 +5,9 @@
 
 This project uses the PaPiRus 2.7" e-ink display to show all your StakeBox statistics such as network status, staking information as well as your current address and QR code for transferring coins/tokens to your wallet. This project is currently compatible with the following StakeBoxes:
 - [Neblio](https://www.stakebox.org/collections/stakeboxes/products/neblio-stakebox)
-- [QTUM](https://www.stakebox.org/collections/stakeboxes/products/qtum-stakebox)
+- [QTUM](https://www.stakebox.org/collections/stakeboxes/products/qtum-stakebox) (Coming Soon)
 - [Reddcoin](https://www.stakebox.org/collections/stakeboxes/products/reddcoin-stakebox)
-- Trezarcoin
+- Trezarcoin (Coming Soon)
 
 
 ## Hardware setup
@@ -97,12 +97,12 @@ sudo python stakebox-papirus.py
 
 The display will show 5 different screens based on the status of the staking application. When you first run the program it will show the StakeBox logo with the server status at the bottom:
 
-Down - the RPC server is not running
-Active - the RPC server is running
+- Down - the RPC server is not running
+- Active - the RPC server is running
 
 At this point you can select one of four buttons (from left to right) at the top of the display to show your staking information:
 
-- system information (SW4)
+- System information (SW4)
   - Current Version
   - Balance
   - Stake
