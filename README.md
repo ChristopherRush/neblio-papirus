@@ -46,7 +46,7 @@ sudo apt-get update
 ```bash
 sudo apt-get install python-pip git bc i2c-tools fonts-freefont-ttf whiptail make gcc -y
 ```
-3. In order for us to connect to the RPC server that the StakeBox application is running we will need a python RPC client so we can connect issue commands to the server. For this we are going to use the Bitcoin RPC Python package, which has been specifically design for bitcoin style cryptocurrecies:
+3. In order for us to connect to the RPC server that the StakeBox application is running we will need a python RPC client so we can connect issue commands to the server. For this we are going to use the Bitcoin RPC Python package, which has been specifically design for bitcoin style cryptocurrencies:
 ```bash
 pip install python-bitcoinrpc
 ```
