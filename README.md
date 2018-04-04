@@ -22,7 +22,7 @@ Currently this software is only compatible with the 2.7" e-ink display due to di
 
 ## Software
 
-The display script is fully automated, in which it will automatically setup the configuration files for the RPC server to access and then parse them into our python script. It doesn't matter which version of the StakeBox you have as the program will locate the installation files for your and create the config file in that particular directory.
+The display script is fully automated, in which it will automatically setup the configuration files for the RPC server to access and then parse them into our python script. It doesn't matter which version of the StakeBox you have as the program will locate the installation files for you and create the config file in that particular directory.
 
 
 ### Auto Installation
@@ -74,4 +74,51 @@ reddcoin - /home/pi/.reddcoin/reddcoin.conf
 curl -sSL https://pisupp.ly/papiruscode | sudo bash
 ```
 
-## Usgage
+## Usage
+
+In order to run the Staking application with the RPC server you will need to launch it from the command line with the following command, depending on which StakeBox you have:
+```bash
+#neblio
+cd /home/pi/Desktop
+./neblio-qt -server
+
+#Reddcoin
+cd /home/pi/reddcoin-2.0.1.2
+./reddcoin-qt -server
+```
+
+Once the Staking application is running on the Desktop you can then begin to start the StakeBox PaPiRus display program with the following command:
+```bash
+cd stakebox-papirus
+sudo python stakebox-papirus.py
+```
+
+## Display features
+
+The display will show 5 different screens based on the status of the staking application. When you first run the program it will show the StakeBox logo with the server status at the bottom:
+
+Down - the RPC server is not running
+Active - the RPC server is running
+
+At this point you can select one of four buttons (from left to right) at the top of the display to show your staking information:
+
+- system information (SW4)
+  - Current Version
+  - Balance
+  - Stake
+  - Connections
+  - Blocks
+  - Proof of Stake Difficulty
+- Staking Information (SW3)
+  - Staking Status
+  - Current Block Size
+  - Current Block Size Tx
+  - Pooled Tx
+  - Difficulty
+  - Weight
+  - Net Stake Weight
+  - Expected Time
+- Staking address (SW2) (Coming soon)
+  - Address (Coming soon)
+  - QR Code (Coming soon)
+- (SW1)
