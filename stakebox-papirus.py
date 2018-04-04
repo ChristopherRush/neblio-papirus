@@ -41,7 +41,7 @@ config.readfp(buf)
 
 #Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
-
+print rpc_connection
 #Get server status must run xxxx-qt -server first
 try:
     rpc_connection.getinfo()
@@ -86,7 +86,7 @@ while True:
         print "1"
         textNImg = PapirusComposite() #Clears the draw buffer
 
-        getaddress = rpc_connection.getaccountaddress()
+        getaddress = rpc_connection.getaccountaddress ""()
         address = ('Address: %s' % getaddress)
         textNImg.AddText((address), 10, 10, Id="1")
         textNImg.WriteAll()
