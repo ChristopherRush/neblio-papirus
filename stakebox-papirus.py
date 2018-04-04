@@ -86,7 +86,7 @@ while True:
         print "1"
         textNImg = PapirusComposite() #Clears the draw buffer
 
-        getaddress = rpc_connection.getaccountaddress.""()
+        getaddress = rpc_connection.getaccountaddress()
         address = ('Address: %s' % getaddress)
         textNImg.AddText((address), 10, 10, Id="1")
         textNImg.WriteAll()
