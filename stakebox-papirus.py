@@ -3,7 +3,7 @@ import sys
 import ConfigParser #used to parse config file
 import os
 import StringIO
-import wget
+#import wget
 
 from papirus import Papirus
 from time import sleep
