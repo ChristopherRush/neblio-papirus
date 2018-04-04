@@ -53,8 +53,8 @@ else
 
 fi
 
-#git clone https://github.com/PiSupply/PaPiRus.git
+git clone https://github.com/PiSupply/PaPiRus.git
 
-#cd PaPiRus
+cd PaPiRus
 
-#sudo bash install
+sudo bash install
