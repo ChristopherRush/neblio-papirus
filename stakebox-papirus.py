@@ -55,9 +55,9 @@ except:
 
 
 getaddress = rpc_connection.getaccountaddress('')
-address = ('Address: %s' % getaddress)
+#address = ('Address: %s' % getaddress)
 
-url = 'explorer.nebl.io/qr/%s.png' %address
+url = 'explorer.nebl.io/qr/%s.png' %getaddress
 
 print url
 
