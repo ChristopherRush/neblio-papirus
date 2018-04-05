@@ -56,6 +56,9 @@ except:
     server_status = False
     pass
 
+
+getaddress = rpc_connection.getaccountaddress('')
+
 if stakebox == "neblio":
     url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
 elif stakebox == "reddcoin":
@@ -63,8 +66,6 @@ elif stakebox == "reddcoin":
 
 
 #Download QR code
-getaddress = rpc_connection.getaccountaddress('')
-
 urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
 
 
