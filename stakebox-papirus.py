@@ -22,7 +22,6 @@ trezarcoinpath=''
 #Check with staking application is installed
 if os.path.isfile(nebliopath):
     config_path = nebliopath
-    stakebox = "neblio"
 
     print "Neblio installed"
 else:
@@ -32,7 +31,6 @@ if os.path.isfile(reddcoinpath):
     config_path = reddcoinpath
     print "Reddcoin installed"
 
-    stakebox = "reddcoin"
 else:
     print "Reddcoin not installed"
 
@@ -59,19 +57,11 @@ except:
 
 getaddress = rpc_connection.getaccountaddress('')
 
-if stakebox == "neblio":
-#    url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
-    url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
-
-elif stakebox == "reddcoin":
-    url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
-
+#QR Code URL from Google APi
+url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
 
 #Download QR code
 urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
-
-
-
 
 #Button GPIO pins
 SW1 = 16
@@ -108,7 +98,7 @@ while True:
     if GPIO.input(SW1) == False:
         print "1"
         textNImg = PapirusComposite() #Clears the draw buffer
-        textNImg.AddImg("images/qr.png",69,25,(125,125), Id="BigImg")
+        textNImg.AddImg("images/qr.png",60,10,(150,150), Id="BigImg")
         textNImg.WriteAll()
     if GPIO.input(SW3) == False:
         print "3"
