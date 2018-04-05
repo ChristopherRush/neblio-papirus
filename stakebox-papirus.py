@@ -22,7 +22,7 @@ trezarcoinpath=''
 #Check with staking application is installed
 if os.path.isfile(nebliopath):
     config_path = nebliopath
-
+    url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
     print "Neblio installed"
 else:
     print "Neblio not installed"
@@ -30,6 +30,7 @@ else:
 if os.path.isfile(reddcoinpath):
     config_path = reddcoinpath
     print "Reddcoin installed"
+    url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
 else:
     print "Reddcoin not installed"
 
@@ -44,7 +45,7 @@ config.readfp(buf)
 
 #Server RPC URL
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
-print rpc_connection
+#print rpc_connection
 #Get server status must run xxxx-qt -server first
 try:
     rpc_connection.getinfo()
@@ -55,7 +56,7 @@ except:
 
 #Download QR code
 getaddress = rpc_connection.getaccountaddress('')
-url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
+
 urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
 
 
