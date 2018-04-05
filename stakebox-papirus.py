@@ -58,7 +58,7 @@ getaddress = rpc_connection.getaccountaddress('')
 #address = ('Address: %s' % getaddress)
 
 url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
-urllib.urlretrieve(url, '/images/qr.png')
+urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
 
 print url
 
