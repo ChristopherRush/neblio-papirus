@@ -57,7 +57,7 @@ except:
 getaddress = rpc_connection.getaccountaddress('')
 #address = ('Address: %s' % getaddress)
 
-url = 'explorer.nebl.io/qr/%s.png' %getaddress
+url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
 urllib.urlretrieve(url, '/images/qr.png')
 
 print url
