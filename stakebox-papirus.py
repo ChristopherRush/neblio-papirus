@@ -11,15 +11,18 @@ from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
 
+
 nebliopath='/home/pi/.neblio/neblio.conf'
 qtumpath=''
 reddcoinpath='/home/pi/.reddcoin/reddcoin.conf'
 trezarcoinpath=''
 
+
+#add while statement here
 #Check with staking application is installed
 if os.path.isfile(nebliopath):
     config_path = nebliopath
-#    url = 'explorer.nebl.io/qr/%s' %address
+
     print "Neblio installed"
 else:
     print "Neblio not installed"
@@ -49,6 +52,15 @@ try:
 except:
     server_status = False
     pass
+
+
+getaddress = rpc_connection.getaccountaddress('')
+address = ('Address: %s' % getaddress)
+
+url = 'explorer.nebl.io/qr/%s.png' %address
+
+print url
+
 
 #Button GPIO pins
 SW1 = 16
@@ -86,8 +98,7 @@ while True:
         print "1"
         textNImg = PapirusComposite() #Clears the draw buffer
 
-        getaddress = rpc_connection.getaccountaddress('')
-        address = ('Address: %s' % getaddress)
+
         textNImg.AddText((address), 10, 10, Id="1")
         textNImg.WriteAll()
     if GPIO.input(SW3) == False:
