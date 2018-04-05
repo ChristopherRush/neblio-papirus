@@ -60,7 +60,9 @@ except:
 getaddress = rpc_connection.getaccountaddress('')
 
 if stakebox == "neblio":
-    url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
+#    url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
+    url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
+
 elif stakebox == "reddcoin":
     url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
 
