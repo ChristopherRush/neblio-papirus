@@ -58,6 +58,7 @@ getaddress = rpc_connection.getaccountaddress('')
 #address = ('Address: %s' % getaddress)
 
 url = 'explorer.nebl.io/qr/%s.png' %getaddress
+urllib.request.urlretrieve(url, '/images/qr.png')
 
 print url
 
