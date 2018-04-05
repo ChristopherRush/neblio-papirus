@@ -53,14 +53,12 @@ except:
     server_status = False
     pass
 
-
+#Download QR code
 getaddress = rpc_connection.getaccountaddress('')
-#address = ('Address: %s' % getaddress)
-
 url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
 urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
 
-print url
+
 
 
 #Button GPIO pins
@@ -98,9 +96,7 @@ while True:
     if GPIO.input(SW1) == False:
         print "1"
         textNImg = PapirusComposite() #Clears the draw buffer
-
-
-        textNImg.AddText((address), 10, 10, Id="1")
+        textNImg.AddImg("images/qr.png",69,25,(125,125), Id="BigImg")
         textNImg.WriteAll()
     if GPIO.input(SW3) == False:
         print "3"
