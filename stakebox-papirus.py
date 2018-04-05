@@ -22,7 +22,8 @@ trezarcoinpath=''
 #Check with staking application is installed
 if os.path.isfile(nebliopath):
     config_path = nebliopath
-    url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
+    stakebox = "neblio"
+
     print "Neblio installed"
 else:
     print "Neblio not installed"
@@ -30,7 +31,8 @@ else:
 if os.path.isfile(reddcoinpath):
     config_path = reddcoinpath
     print "Reddcoin installed"
-    url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
+
+    stakebox = "reddcoin"
 else:
     print "Reddcoin not installed"
 
@@ -53,6 +55,12 @@ try:
 except:
     server_status = False
     pass
+
+if stakebox == "neblio":
+    url = 'http://explorer.nebl.io/qr/%s.png' %getaddress
+elif stakebox == "reddcoin":
+    url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
+
 
 #Download QR code
 getaddress = rpc_connection.getaccountaddress('')
