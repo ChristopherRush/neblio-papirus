@@ -58,10 +58,10 @@ def demo(papirus):
     text = "hello world"
     value = 0
     while True:
-
+        draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
         draw.text((5, 10), 'text %d' % value, fill=BLACK, font=clock_font)
         papirus.display(image)
-        
+
         papirus.partial_update()
         value += 1
 
