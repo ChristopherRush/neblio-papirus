@@ -58,6 +58,11 @@ if os.path.isfile(reddcoinpath):
 else:
     print "Reddcoin not installed"
 
+if config_path = null:
+    print "No configuration file found. Please run config.py to setup"
+    sys.exit()
+
+
 #Parse config file so you can read its values
 with open(config_path, 'r') as f:
     a = '[config]\n' #Adds section header to the string. By default the staking app cannot read the config file if there is a section header
