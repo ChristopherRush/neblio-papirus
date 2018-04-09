@@ -95,7 +95,13 @@ else:
     textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
 textNImg.WriteAll()
 
-print GPIO.input(SW1) & GPIO.input(SW2) & GPIO.input(SW3) & GPIO.input(SW4)
+print GPIO.input(SW1)
+print GPIO.input(SW2)
+print GPIO.input(SW3)
+print GPIO.input(SW4)
+
+
+
 
 while True:
     if GPIO.input(SW1) == False:
