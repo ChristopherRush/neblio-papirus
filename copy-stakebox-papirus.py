@@ -87,7 +87,7 @@ except:
 getaddress = rpc_connection.getaccountaddress('')
 
 #QR Code URL from Google APi
-url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
+url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s' %getaddress
 
 #Download QR code
 urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
