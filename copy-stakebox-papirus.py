@@ -58,7 +58,7 @@ if os.path.isfile(reddcoinpath):
 else:
     print "Reddcoin not installed"
 
-if config_path == null:
+if config_path == "":
     print "No configuration file found. Please run config.py to setup"
     sys.exit()
 
