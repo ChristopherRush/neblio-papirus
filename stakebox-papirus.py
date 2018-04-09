@@ -97,12 +97,12 @@ textNImg.WriteAll()
 while True:
     if GPIO.input(SW1) == False:
         print "1"
-        textNImg = PapirusComposite() #Clears the draw buffer
+        textNImg = PapirusComposite(False) #Clears the draw buffer
         textNImg.AddImg("images/qr.png",60,10,(150,150), Id="BigImg")
         textNImg.WriteAll()
     if GPIO.input(SW3) == False:
         print "3"
-        textNImg = PapirusComposite() #Clears the draw buffer
+        textNImg = PapirusComposite(False) #Clears the draw buffer
         #papirus.clear() #Clear the display
 
         #Get info from RPC connection
@@ -138,7 +138,7 @@ while True:
 
     if GPIO.input(SW4) == False:
         print "4"
-        textNImg = PapirusComposite() #Clears the draw buffer
+        textNImg = PapirusComposite(False) #Clears the draw buffer
         #papirus.clear() #Clear the display
 
 
