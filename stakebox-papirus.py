@@ -200,7 +200,8 @@ while True:
         textNImg.AddText((pos), 10, 130, Id="7")
         textNImg.WriteAll()
 
-        while GPIO.input(SW1) == True & GPIO.input(SW2) == True & GPIO.input(SW4) == True:
+        while GPIO.input(SW1) == True & GPIO.input(SW2) == True & GPIO.input(SW3) == True:
+            print "here"
             get_version = rpc_connection.getinfo()["version"]
             get_balance = rpc_connection.getinfo()["balance"]
             get_stake = rpc_connection.getinfo()["stake"]
@@ -223,5 +224,5 @@ while True:
             textNImg.UpdateText("-----Difficulty-----", 10, 110, Id="6")
             textNImg.UpdateText((pos), 10, 130, Id="7")
             textNImg.WriteAll()
-
+            sleep(0.1)
     sleep(0.1)
