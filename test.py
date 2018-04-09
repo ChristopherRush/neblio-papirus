@@ -53,7 +53,7 @@ def demo(papirus):
     draw = ImageDraw.Draw(image)
     width, height = image.size
 
-    clock_font_size = int((width - 4)/(25*0.65))      # 8 chars HH:MM:SS
+    clock_font_size = int((width - 4)/(20*0.65))      # 8 chars HH:MM:SS
     clock_font = ImageFont.truetype(CLOCK_FONT_FILE, clock_font_size)
     text = "hello world"
     value = 0
