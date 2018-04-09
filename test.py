@@ -12,4 +12,4 @@ text.AddText("hello world", 10, 10, Id="Start" )
 # "Another line" will appear on screen at (0, 0), font size 20, straight away
 text.AddText("Another line", Id="Top")
 
-text.WriteAll()
+text.fast_update()
