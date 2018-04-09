@@ -126,6 +126,7 @@ def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
         papirus.clear()
         draw_image(papirus)
+        print "here"
 
 def draw_image(papirus):
      # initially set all white background
