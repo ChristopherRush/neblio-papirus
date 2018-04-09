@@ -64,7 +64,6 @@ def demo(papirus):
     previous_day = 0
 
     while True:
-        while True:
 
         draw.rectangle((5, 10, width - 5, 10 + clock_font_size), fill=WHITE, outline=WHITE)
 
