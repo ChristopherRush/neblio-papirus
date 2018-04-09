@@ -25,4 +25,4 @@ while True:
 # Clear all text from the screen
 # This does a full update so is a little slower than just removing the text.
     text.Clear()
-    sleep 1
+    sleep (1)
