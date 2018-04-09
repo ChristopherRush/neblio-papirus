@@ -115,7 +115,7 @@ def stake_info():
     weight = ('Weight: %d' % get_weight)
     netweight = ('Net Weight: %d' % get_netweight)
     expectedtime = ('Expected: %f' % get_exp_time)
-    return (staking)
+    return staking
 
 
 
