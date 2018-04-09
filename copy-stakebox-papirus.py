@@ -151,7 +151,7 @@ def draw_image(papirus):
 
         if GPIO.input(SW3) == False:
             papirus.clear()
-            while GPIO.input(SW3) == True & GPIO.input(SW1) == True:
+            while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
         #Get info from RPC connection
                 get_staking = rpc_connection.getstakinginfo()["staking"]
                 get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
@@ -186,7 +186,36 @@ def draw_image(papirus):
 
                 papirus.partial_update()
 
+        if GPIO.input(SW4) == False:
+            papirus.clear()
+            while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
 
+                get_version = rpc_connection.getinfo()["version"]
+                get_balance = rpc_connection.getinfo()["balance"]
+                get_stake = rpc_connection.getinfo()["stake"]
+                get_connection = rpc_connection.getinfo()["connections"]
+                get_blocks = rpc_connection.getinfo()["blocks"]
+                get_pos = rpc_connection.getstakinginfo()["difficulty"]
+
+                version = ('Version: %s' % get_version)
+                balance = ('Balance: %f' % get_balance)
+                stake = ('Stake: %f' % get_stake)
+                connections = ('Connections: %d' % get_connection)
+                blocks = ('Blocks: %d' % get_blocks)
+                pos = ('PoS: %f' % get_pos)
+
+        #Write to the PaPiRus screen
+                draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
+                draw.text((5, 10), staking, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 10), version, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 30), balance, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 50), stake, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 70), connections, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 90), blocks, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 110), pos, fill=BLACK, font=clock_font)
+                papirus.display(image)
+
+                papirus.partial_update()
     sleep(0.1)
 
 # main
