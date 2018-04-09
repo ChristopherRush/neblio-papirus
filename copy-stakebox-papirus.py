@@ -124,9 +124,8 @@ print GPIO.input(SW4)
 
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
-        papirus.clear()
+
         draw_image(papirus)
-        print "here"
 
 def draw_image(papirus):
      # initially set all white background
@@ -136,7 +135,7 @@ def draw_image(papirus):
     draw = ImageDraw.Draw(image)
     width, height = image.size
 
-    clock_font_size = int((width - 4)/(18*0.65))      # 18 chars HH:MM:SS
+    clock_font_size = int((width - 4)/(20*0.65))      # 18 chars HH:MM:SS
     clock_font = ImageFont.truetype(CLOCK_FONT_FILE, clock_font_size)
 
      # clear the display buffer
@@ -151,6 +150,7 @@ def draw_image(papirus):
             textNImg.WriteAll()
 
         if GPIO.input(SW3) == False:
+            papirus.clear()
             while GPIO.input(SW3) == True & GPIO.input(SW1) == True:
         #Get info from RPC connection
                 get_staking = rpc_connection.getstakinginfo()["staking"]
@@ -175,6 +175,7 @@ def draw_image(papirus):
         #Write to the PaPiRus screen
                 draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
                 draw.text((5, 10), staking, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 10), currentblocksize, fill=BLACK, font=clock_font)
                 papirus.display(image)
 
                 papirus.partial_update()
