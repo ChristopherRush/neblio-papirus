@@ -10,9 +10,31 @@ from time import sleep
 from papirus import PapirusImage
 from papirus import PapirusComposite
 from bitcoinrpc.authproxy import AuthServiceProxy
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+
+# Check EPD_SIZE is defined
+EPD_SIZE=0.0
+if os.path.exists('/etc/default/epd-fuse'):
+    exec(open('/etc/default/epd-fuse').read())
+if EPD_SIZE == 0.0:
+    print("Please select your screen size by running 'papirus-config'.")
+    sys.exit()
+
+# Running as root only needed for older Raspbians without /dev/gpiomem
+if not (os.path.exists('/dev/gpiomem') and os.access('/dev/gpiomem', os.R_OK | os.W_OK)):
+    user = os.getuid()
+    if user != 0:
+        print("Please run script as root")
+        sys.exit()
 
 
-button_state = 0
+WHITE = 1
+BLACK = 0
+
+CLOCK_FONT_FILE = '/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf'
+DATE_FONT_FILE  = '/usr/share/fonts/truetype/freefont/FreeMono.ttf'
 
 nebliopath='/home/pi/.neblio/neblio.conf'
 qtumpath=''
@@ -35,6 +57,11 @@ if os.path.isfile(reddcoinpath):
 
 else:
     print "Reddcoin not installed"
+
+if config_path == "":
+    print "No configuration file found. Please run config.py to setup"
+    sys.exit()
+
 
 #Parse config file so you can read its values
 with open(config_path, 'r') as f:
@@ -60,7 +87,7 @@ except:
 getaddress = rpc_connection.getaccountaddress('')
 
 #QR Code URL from Google APi
-url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s=H|0' %getaddress
+url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s' %getaddress
 
 #Download QR code
 urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
@@ -100,54 +127,37 @@ print GPIO.input(SW2)
 print GPIO.input(SW3)
 print GPIO.input(SW4)
 
+def main(argv):
+        papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
+
+        draw_image(papirus)
+
+def draw_image(papirus):
+     # initially set all white background
+    image = Image.new('1', papirus.size, WHITE)
+
+    # prepare for drawing
+    draw = ImageDraw.Draw(image)
+    width, height = image.size
+
+    clock_font_size = int((width - 4)/(20*0.65))      # 18 chars HH:MM:SS
+    clock_font = ImageFont.truetype(CLOCK_FONT_FILE, clock_font_size)
+
+     # clear the display buffer
+    draw.rectangle((0, 0, width, height), fill=WHITE, outline=WHITE)
+    while True:
 
 
+        if GPIO.input(SW1) == False:
+            print "1"
+            textNImg = PapirusComposite(False) #Clears the draw buffer
+            textNImg.AddImg("images/qr.png",60,10,(150,150), Id="BigImg")
+            textNImg.WriteAll()
 
-while True:
-    if GPIO.input(SW1) == False:
-        button_state = 1
-        print "1"
-        textNImg = PapirusComposite(False) #Clears the draw buffer
-        textNImg.AddImg("images/qr.png",60,10,(150,150), Id="BigImg")
-        textNImg.WriteAll()
-
-    if GPIO.input(SW3) == False:
-        print "3"
-        textNImg = PapirusComposite(False) #Clears the draw buffer
-        #papirus.clear() #Clear the display
-
+        if GPIO.input(SW3) == False:
+            papirus.clear()
+            while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
         #Get info from RPC connection
-        get_staking = rpc_connection.getstakinginfo()["staking"]
-        get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
-        get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
-        get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
-        get_search = rpc_connection.getstakinginfo()["search-interval"]
-        get_weight = rpc_connection.getstakinginfo()["weight"]
-        get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
-        get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
-
-        #Append value to string
-        staking = ('Staking: %s' % get_staking)
-        currentblocksize = ('Block Size: %f' % get_curr_block_size)
-        currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
-        pooledtx = ('PooledTx: %d' % get_pooledtx)
-        search_int = ('Search: %d' % get_search)
-        weight = ('Weight: %d' % get_weight)
-        netweight = ('Net Weight: %d' % get_netweight)
-        expectedtime = ('Expected: %f' % get_exp_time)
-
-        #Write to the PaPiRus screen
-        textNImg.AddText((staking), 10, 10, Id="1")
-        textNImg.AddText((currentblocksize), 10, 30, Id="2")
-        textNImg.AddText((currentblocktx), 10, 50, Id="3")
-        textNImg.AddText((pooledtx), 10, 70, Id="4")
-        textNImg.AddText((search_int), 10, 90, Id="5")
-        textNImg.AddText((weight), 10, 110, Id="6")
-        textNImg.AddText((netweight), 10, 130, Id="7")
-        textNImg.AddText((expectedtime), 10, 150, Id="8")
-        textNImg.WriteAll()
-
-        while GPIO.input(SW1) == True & GPIO.input(SW4) == True:
                 get_staking = rpc_connection.getstakinginfo()["staking"]
                 get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
                 get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
@@ -157,7 +167,7 @@ while True:
                 get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
                 get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
 
-                #Append value to string
+        #Append value to string
                 staking = ('Staking: %s' % get_staking)
                 currentblocksize = ('Block Size: %f' % get_curr_block_size)
                 currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
@@ -167,70 +177,58 @@ while True:
                 netweight = ('Net Weight: %d' % get_netweight)
                 expectedtime = ('Expected: %f' % get_exp_time)
 
-                #Write to the PaPiRus screen
-                textNImg.UpdateText((staking), 10, 10, Id="1")
-                textNImg.UpdateText((currentblocksize), 10, 30, Id="2")
-                textNImg.UpdateText((currentblocktx), 10, 50, Id="3")
-                textNImg.UpdateText((pooledtx), 10, 70, Id="4")
-                textNImg.UpdateText((search_int), 10, 90, Id="5")
-                textNImg.UpdateText((weight), 10, 110, Id="6")
-                textNImg.UpdateText((netweight), 10, 130, Id="7")
-                textNImg.UpdateText((expectedtime), 10, 150, Id="8")
-                textNImg.WriteAll()
+        #Write to the PaPiRus screen
+                draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
+                draw.text((5, 10), staking, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 10), currentblocksize, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 30), currentblocktx, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 50), pooledtx, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 70), search_int, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 90), weight, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 110), netweight, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 130), expectedtime, fill=BLACK, font=clock_font)
+                papirus.display(image)
 
-    if GPIO.input(SW4) == False:
-        print "4"
-        button_state = 4
-        textNImg = PapirusComposite(False) #Clears the draw buffer
-        #papirus.clear() #Clear the display
+                papirus.partial_update()
 
+        if GPIO.input(SW4) == False:
+            papirus.clear()
+            while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
 
-        get_version = rpc_connection.getinfo()["version"]
-        get_balance = rpc_connection.getinfo()["balance"]
-        get_stake = rpc_connection.getinfo()["stake"]
-        get_connection = rpc_connection.getinfo()["connections"]
-        get_blocks = rpc_connection.getinfo()["blocks"]
-        get_pos = rpc_connection.getstakinginfo()["difficulty"]
+                get_version = rpc_connection.getinfo()["version"]
+                get_balance = rpc_connection.getinfo()["balance"]
+                get_stake = rpc_connection.getinfo()["stake"]
+                get_connection = rpc_connection.getinfo()["connections"]
+                get_blocks = rpc_connection.getinfo()["blocks"]
+                get_pos = rpc_connection.getstakinginfo()["difficulty"]
 
-        version = ('Version: %s' % get_version)
-        balance = ('Balance: %f' % get_balance)
-        stake = ('Stake: %f' % get_stake)
-        connections = ('Connections: %d' % get_connection)
-        blocks = ('Blocks: %d' % get_blocks)
-        pos = ('PoS: %f' % get_pos)
+                version = ('Version: %s' % get_version)
+                balance = ('Balance: %f' % get_balance)
+                stake = ('Stake: %f' % get_stake)
+                connections = ('Connections: %d' % get_connection)
+                blocks = ('Blocks: %d' % get_blocks)
+                pos = ('PoS: %f' % get_pos)
 
-        textNImg.AddText((version), 10, 10, Id="1")
-        textNImg.AddText((balance), 10, 30, Id="2")
-        textNImg.AddText((stake), 10, 50, Id="3")
-        textNImg.AddText((connections), 10, 70, Id="4")
-        textNImg.AddText((blocks), 10, 90, Id="5")
-        textNImg.AddText("-----Difficulty-----", 10, 110, Id="6")
-        textNImg.AddText((pos), 10, 130, Id="7")
-        textNImg.WriteAll()
+        #Write to the PaPiRus screen
+                draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
+                draw.text((5, 10), version, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 10), balance, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 30), stake, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 50), connections, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 70), blocks, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 90), pos, fill=BLACK, font=clock_font)
+                papirus.display(image)
 
-        while GPIO.input(SW1) == True & GPIO.input(SW3) == True:
-            print "here"
-            get_version = rpc_connection.getinfo()["version"]
-            get_balance = rpc_connection.getinfo()["balance"]
-            get_stake = rpc_connection.getinfo()["stake"]
-            get_connection = rpc_connection.getinfo()["connections"]
-            get_blocks = rpc_connection.getinfo()["blocks"]
-            get_pos = rpc_connection.getstakinginfo()["difficulty"]
-
-            version = ('Version: %s' % get_version)
-            balance = ('Balance: %f' % get_balance)
-            stake = ('Stake: %f' % get_stake)
-            connections = ('Connections: %d' % get_connection)
-            blocks = ('Blocks: %d' % get_blocks)
-            pos = ('PoS: %f' % get_pos)
-
-            textNImg.UpdateText("1", (version))
-            textNImg.UpdateText("2", (balance))
-#            textNImg.UpdateText((stake), 10, 50, Id="3")
-            textNImg.UpdateText("4", (connections))
-#            textNImg.UpdateText((blocks), 10, 90, Id="5")
-#            textNImg.UpdateText("-----Difficulty-----", 10, 110, Id="6")
-#            textNImg.UpdateText((pos), 10, 130, Id="7")
-            textNImg.partial_update()
-            sleep(0.1)
+                papirus.partial_update()
     sleep(0.1)
+
+# main
+if "__main__" == __name__:
+    if len(sys.argv) < 1:
+        sys.exit('usage: {p:s}'.format(p=sys.argv[0]))
+
+    try:
+        main(sys.argv[1:])
+    except KeyboardInterrupt:
+        sys.exit('interrupted')
+        pass
