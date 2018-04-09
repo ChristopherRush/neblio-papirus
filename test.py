@@ -60,7 +60,8 @@ def demo(papirus):
     while True:
 
         draw.text((5, 10), 'text %d' % value, fill=BLACK, font=clock_font)
-
+        papirus.display(image)
+        
         papirus.partial_update()
         value += 1
 
