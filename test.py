@@ -63,14 +63,15 @@ def demo(papirus):
     previous_second = 0
     previous_day = 0
 
+    value = 0
     while True:
 
         draw.rectangle((5, 10, width - 5, 10 + clock_font_size), fill=WHITE, outline=WHITE)
 
-        draw.text((5, 10), "Hello world" + 1, fill=BLACK, font=clock_font)
+        draw.text((5, 10), "Hello world %d" % value, fill=BLACK, font=clock_font)
 
         papirus.partial_update()
-
+        value += 1
 
 # main
 if "__main__" == __name__:
