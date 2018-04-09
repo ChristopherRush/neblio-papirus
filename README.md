@@ -87,6 +87,8 @@ cd /home/pi/reddcoin-2.0.1.2
 ./reddcoin-qt -server
 ```
 
+NOTE: You cannot run this command using SSH, it must be run from the Desktop GUI
+
 Once the Staking application is running on the Desktop you can then begin to start the StakeBox PaPiRus display program with the following command:
 ```bash
 cd stakebox-papirus
