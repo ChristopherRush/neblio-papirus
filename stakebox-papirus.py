@@ -147,7 +147,7 @@ while True:
         textNImg.AddText((expectedtime), 10, 150, Id="8")
         textNImg.WriteAll()
 
-        while GPIO.input(SW1) == True & GPIO.input(SW2) == True & GPIO.input(SW4) == True:
+        while GPIO.input(SW1) == True & GPIO.input(SW4) == True:
                 get_staking = rpc_connection.getstakinginfo()["staking"]
                 get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
                 get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
@@ -208,7 +208,7 @@ while True:
         textNImg.AddText((pos), 10, 130, Id="7")
         textNImg.WriteAll()
 
-        while GPIO.input(SW1) == True & GPIO.input(SW2) == True & GPIO.input(SW3) == True:
+        while GPIO.input(SW1) == True & GPIO.input(SW3) == True:
             print "here"
             get_version = rpc_connection.getinfo()["version"]
             get_balance = rpc_connection.getinfo()["balance"]
