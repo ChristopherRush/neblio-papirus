@@ -200,4 +200,28 @@ while True:
         textNImg.AddText((pos), 10, 130, Id="7")
         textNImg.WriteAll()
 
+        while GPIO.input(SW1) == True & GPIO.input(SW2) == True & GPIO.input(SW4) == True:
+            get_version = rpc_connection.getinfo()["version"]
+            get_balance = rpc_connection.getinfo()["balance"]
+            get_stake = rpc_connection.getinfo()["stake"]
+            get_connection = rpc_connection.getinfo()["connections"]
+            get_blocks = rpc_connection.getinfo()["blocks"]
+            get_pos = rpc_connection.getstakinginfo()["difficulty"]
+
+            version = ('Version: %s' % get_version)
+            balance = ('Balance: %f' % get_balance)
+            stake = ('Stake: %f' % get_stake)
+            connections = ('Connections: %d' % get_connection)
+            blocks = ('Blocks: %d' % get_blocks)
+            pos = ('PoS: %f' % get_pos)
+
+            textNImg.UpdateText((version), 10, 10, Id="1")
+            textNImg.UpdateText((balance), 10, 30, Id="2")
+            textNImg.UpdateText((stake), 10, 50, Id="3")
+            textNImg.UpdateText((connections), 10, 70, Id="4")
+            textNImg.UpdateText((blocks), 10, 90, Id="5")
+            textNImg.UpdateText("-----Difficulty-----", 10, 110, Id="6")
+            textNImg.UpdateText((pos), 10, 130, Id="7")
+            textNImg.WriteAll()
+
     sleep(0.1)
