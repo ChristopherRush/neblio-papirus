@@ -55,13 +55,6 @@ def demo(papirus):
 
     clock_font_size = int((width - 4)/(14*0.65))      # 8 chars HH:MM:SS
     clock_font = ImageFont.truetype(CLOCK_FONT_FILE, clock_font_size)
-    date_font_size = int((width - 10)/(10*0.65))     # 10 chars YYYY-MM-DD
-    date_font = ImageFont.truetype(DATE_FONT_FILE, date_font_size)
-
-    # clear the display buffer
-    draw.rectangle((0, 0, width, height), fill=WHITE, outline=WHITE)
-    previous_second = 0
-    previous_day = 0
 
     value = 0
     while True:
