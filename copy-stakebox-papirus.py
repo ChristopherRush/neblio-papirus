@@ -206,13 +206,12 @@ def draw_image(papirus):
 
         #Write to the PaPiRus screen
                 draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
-                draw.text((5, 10), staking, fill=BLACK, font=clock_font)
-                draw.text((5, clock_font_size + 10), version, fill=BLACK, font=clock_font)
-                draw.text((5, clock_font_size + 30), balance, fill=BLACK, font=clock_font)
-                draw.text((5, clock_font_size + 50), stake, fill=BLACK, font=clock_font)
-                draw.text((5, clock_font_size + 70), connections, fill=BLACK, font=clock_font)
-                draw.text((5, clock_font_size + 90), blocks, fill=BLACK, font=clock_font)
-                draw.text((5, clock_font_size + 110), pos, fill=BLACK, font=clock_font)
+                draw.text((5, 10), version, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 10), balance, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 30), stake, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 50), connections, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 70), blocks, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 90), pos, fill=BLACK, font=clock_font)
                 papirus.display(image)
 
                 papirus.partial_update()
