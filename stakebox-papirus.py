@@ -231,6 +231,6 @@ while True:
 #            textNImg.UpdateText((blocks), 10, 90, Id="5")
 #            textNImg.UpdateText("-----Difficulty-----", 10, 110, Id="6")
 #            textNImg.UpdateText((pos), 10, 130, Id="7")
-            textNImg.WriteAll()
+            textNImg.partial_update()
             sleep(0.1)
     sleep(0.1)
