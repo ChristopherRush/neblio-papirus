@@ -176,6 +176,12 @@ def draw_image(papirus):
                 draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
                 draw.text((5, 10), staking, fill=BLACK, font=clock_font)
                 draw.text((5, clock_font_size + 10), currentblocksize, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 20), currentblocktx, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 30), pooledtx, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 40), search_int, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 50), weight, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 60), netweight, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 70), expectedtime, fill=BLACK, font=clock_font)
                 papirus.display(image)
 
                 papirus.partial_update()
