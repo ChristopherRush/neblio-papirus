@@ -80,7 +80,7 @@ GPIO.setup(SW4, GPIO.IN)
 
 
 papirus = Papirus() #create papirus object
-textNImg = PapirusComposite() #create variable to store image/text
+textNImg = PapirusComposite(False) #create variable to store image/text
 
 #Boot image when started
 if server_status == True:
