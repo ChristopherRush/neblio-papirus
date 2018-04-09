@@ -53,7 +53,7 @@ def demo(papirus):
     draw = ImageDraw.Draw(image)
     width, height = image.size
 
-    clock_font_size = int((width - 4)/(8*0.65))      # 8 chars HH:MM:SS
+    clock_font_size = int((width - 4)/(14*0.65))      # 8 chars HH:MM:SS
     clock_font = ImageFont.truetype(CLOCK_FONT_FILE, clock_font_size)
     date_font_size = int((width - 10)/(10*0.65))     # 10 chars YYYY-MM-DD
     date_font = ImageFont.truetype(DATE_FONT_FILE, date_font_size)
@@ -65,8 +65,6 @@ def demo(papirus):
 
     value = 0
     while True:
-
-        draw.rectangle((5, 10, width - 5, 10 + clock_font_size), fill=WHITE, outline=WHITE)
 
         draw.text((5, 10), "Hello world %d" % value, fill=BLACK, font=clock_font)
 
