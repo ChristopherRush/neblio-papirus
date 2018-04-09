@@ -95,6 +95,30 @@ else:
     textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
 textNImg.WriteAll()
 
+def stake_info():
+#Get info from RPC connection
+    get_staking = rpc_connection.getstakinginfo()["staking"]
+    get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
+    get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
+    get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
+    get_search = rpc_connection.getstakinginfo()["search-interval"]
+    get_weight = rpc_connection.getstakinginfo()["weight"]
+    get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
+    get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
+
+    #Append value to string
+    staking = ('Staking: %s' % get_staking)
+    currentblocksize = ('Block Size: %f' % get_curr_block_size)
+    currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
+    pooledtx = ('PooledTx: %d' % get_pooledtx)
+    search_int = ('Search: %d' % get_search)
+    weight = ('Weight: %d' % get_weight)
+    netweight = ('Net Weight: %d' % get_netweight)
+    expectedtime = ('Expected: %f' % get_exp_time)
+    return
+
+
+
 
 while True:
     if GPIO.input(SW1) == False:
@@ -158,25 +182,3 @@ while True:
 
 #    if button_state == 4:
 #        stake_info()
-
-    def stake_info():
-    #Get info from RPC connection
-        get_staking = rpc_connection.getstakinginfo()["staking"]
-        get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
-        get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
-        get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
-        get_search = rpc_connection.getstakinginfo()["search-interval"]
-        get_weight = rpc_connection.getstakinginfo()["weight"]
-        get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
-        get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
-
-        #Append value to string
-        staking = ('Staking: %s' % get_staking)
-        currentblocksize = ('Block Size: %f' % get_curr_block_size)
-        currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
-        pooledtx = ('PooledTx: %d' % get_pooledtx)
-        search_int = ('Search: %d' % get_search)
-        weight = ('Weight: %d' % get_weight)
-        netweight = ('Net Weight: %d' % get_netweight)
-        expectedtime = ('Expected: %f' % get_exp_time)
-        return
