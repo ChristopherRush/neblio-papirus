@@ -55,11 +55,11 @@ def demo(papirus):
 
     clock_font_size = int((width - 4)/(14*0.65))      # 8 chars HH:MM:SS
     clock_font = ImageFont.truetype(CLOCK_FONT_FILE, clock_font_size)
-
+    text = "hello world"
     value = 0
     while True:
 
-        draw.text((5, 10), "Hello world %d" % value, fill=BLACK, font=clock_font)
+        draw.text((5, 10), 'text %d' % value, fill=BLACK, font=clock_font)
 
         papirus.partial_update()
         value += 1
