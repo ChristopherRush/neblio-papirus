@@ -139,7 +139,7 @@ while True:
         textNImg.AddText((expectedtime), 10, 150, Id="8")
         textNImg.WriteAll()
 
-        while GPIO.input(SW1) == True && GPIO.input(SW2) == True && GPIO.input(SW4) == True:
+        while GPIO.input(SW1) == True & GPIO.input(SW2) == True & GPIO.input(SW4) == True:
                 get_staking = rpc_connection.getstakinginfo()["staking"]
                 get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
                 get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
