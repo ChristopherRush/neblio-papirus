@@ -1,5 +1,6 @@
 from papirus import PapirusTextPos
 
+rot = 0
 # Same as calling "PapirusTextPos(True [,rotation = rot])"
 text = PapirusTextPos([rotation = rot])
 
