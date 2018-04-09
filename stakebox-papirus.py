@@ -123,6 +123,7 @@ while True:
         textNImg.AddText((expectedtime), 10, 150, Id="8")
         textNImg.WriteAll()
 
+
     if GPIO.input(SW4) == False:
         print "4"
         button_state = 4
@@ -155,23 +156,31 @@ while True:
 
     sleep(0.1)
 
-    def stake_info():
-                #Get info from RPC connection
-                get_staking = rpc_connection.getstakinginfo()["staking"]
-                get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
-                get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
-                get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
-                get_search = rpc_connection.getstakinginfo()["search-interval"]
-                get_weight = rpc_connection.getstakinginfo()["weight"]
-                get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
-                get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
+#    if button_state == 4:
+#        stake_info()
 
-                #Append value to string
-                staking = ('Staking: %s' % get_staking)
-                currentblocksize = ('Block Size: %f' % get_curr_block_size)
-                currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
-                pooledtx = ('PooledTx: %d' % get_pooledtx)
-                search_int = ('Search: %d' % get_search)
-                weight = ('Weight: %d' % get_weight)
-                netweight = ('Net Weight: %d' % get_netweight)
-                expectedtime = ('Expected: %f' % get_exp_time)
+
+
+
+
+
+def stake_info():
+            #Get info from RPC connection
+            get_staking = rpc_connection.getstakinginfo()["staking"]
+            get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
+            get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
+            get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
+            get_search = rpc_connection.getstakinginfo()["search-interval"]
+            get_weight = rpc_connection.getstakinginfo()["weight"]
+            get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
+            get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
+
+            #Append value to string
+            staking = ('Staking: %s' % get_staking)
+            currentblocksize = ('Block Size: %f' % get_curr_block_size)
+            currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
+            pooledtx = ('PooledTx: %d' % get_pooledtx)
+            search_int = ('Search: %d' % get_search)
+            weight = ('Weight: %d' % get_weight)
+            netweight = ('Net Weight: %d' % get_netweight)
+            expectedtime = ('Expected: %f' % get_exp_time)
