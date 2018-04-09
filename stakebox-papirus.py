@@ -227,7 +227,7 @@ while True:
             textNImg.UpdateText("1", (version))
             textNImg.UpdateText("2", (balance))
 #            textNImg.UpdateText((stake), 10, 50, Id="3")
-            textNImg.UpdateText("4", (conections))
+            textNImg.UpdateText("4", (connections))
 #            textNImg.UpdateText((blocks), 10, 90, Id="5")
 #            textNImg.UpdateText("-----Difficulty-----", 10, 110, Id="6")
 #            textNImg.UpdateText((pos), 10, 130, Id="7")
