@@ -125,7 +125,7 @@ print GPIO.input(SW4)
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
         papirus.clear()
-
+        draw_image(papirus)
 
 def draw_image(papirus):
      # initially set all white background
