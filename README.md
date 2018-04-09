@@ -66,8 +66,8 @@ rpcport=8332
 rpcallowip=127.0.0.1
 ```
 You can find the configuration file in the application directory:
-neblio - /home/pi/.neblio/neblio.config
-reddcoin - /home/pi/.reddcoin/reddcoin.conf
+- neblio - /home/pi/.neblio/neblio.config
+- reddcoin - /home/pi/.reddcoin/reddcoin.conf
 
 6. Finally you can install the PaPiRus library using the following instalation script or if you wish to install manually you can follow the steps on the PaPiRus [GitHub](https://github.com/PiSupply/PaPiRus) page:
 ```bash
