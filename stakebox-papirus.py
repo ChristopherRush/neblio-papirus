@@ -95,31 +95,6 @@ else:
     textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
 textNImg.WriteAll()
 
-def stake_info():
-#Get info from RPC connection
-    get_staking = rpc_connection.getstakinginfo()["staking"]
-    get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
-    get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
-    get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
-    get_search = rpc_connection.getstakinginfo()["search-interval"]
-    get_weight = rpc_connection.getstakinginfo()["weight"]
-    get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
-    get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
-
-    #Append value to string
-    staking = ('Staking: %s' % get_staking)
-    currentblocksize = ('Block Size: %f' % get_curr_block_size)
-    currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
-    pooledtx = ('PooledTx: %d' % get_pooledtx)
-    search_int = ('Search: %d' % get_search)
-    weight = ('Weight: %d' % get_weight)
-    netweight = ('Net Weight: %d' % get_netweight)
-    expectedtime = ('Expected: %f' % get_exp_time)
-    return staking
-
-
-
-
 while True:
     if GPIO.input(SW1) == False:
         button_state = 1
@@ -130,11 +105,28 @@ while True:
 
     if GPIO.input(SW3) == False:
         print "3"
-        button_state = 3
         textNImg = PapirusComposite(False) #Clears the draw buffer
         #papirus.clear() #Clear the display
 
-        stake_info()
+        #Get info from RPC connection
+        get_staking = rpc_connection.getstakinginfo()["staking"]
+        get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
+        get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
+        get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
+        get_search = rpc_connection.getstakinginfo()["search-interval"]
+        get_weight = rpc_connection.getstakinginfo()["weight"]
+        get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
+        get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
+
+        #Append value to string
+        staking = ('Staking: %s' % get_staking)
+        currentblocksize = ('Block Size: %f' % get_curr_block_size)
+        currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
+        pooledtx = ('PooledTx: %d' % get_pooledtx)
+        search_int = ('Search: %d' % get_search)
+        weight = ('Weight: %d' % get_weight)
+        netweight = ('Net Weight: %d' % get_netweight)
+        expectedtime = ('Expected: %f' % get_exp_time)
 
         #Write to the PaPiRus screen
         textNImg.AddText((staking), 10, 10, Id="1")
@@ -147,6 +139,36 @@ while True:
         textNImg.AddText((expectedtime), 10, 150, Id="8")
         textNImg.WriteAll()
 
+        while GPIO.input(SW3, SW4, SW1, SW2) == True:
+                get_staking = rpc_connection.getstakinginfo()["staking"]
+                get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
+                get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
+                get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
+                get_search = rpc_connection.getstakinginfo()["search-interval"]
+                get_weight = rpc_connection.getstakinginfo()["weight"]
+                get_netweight = rpc_connection.getstakinginfo()["netstakeweight"]
+                get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
+
+                #Append value to string
+                staking = ('Staking: %s' % get_staking)
+                currentblocksize = ('Block Size: %f' % get_curr_block_size)
+                currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
+                pooledtx = ('PooledTx: %d' % get_pooledtx)
+                search_int = ('Search: %d' % get_search)
+                weight = ('Weight: %d' % get_weight)
+                netweight = ('Net Weight: %d' % get_netweight)
+                expectedtime = ('Expected: %f' % get_exp_time)
+
+                #Write to the PaPiRus screen
+                textNImg.UpdateText((staking), 10, 10, Id="1")
+                textNImg.UpdateText((currentblocksize), 10, 30, Id="2")
+                textNImg.UpdateText((currentblocktx), 10, 50, Id="3")
+                textNImg.UpdateText((pooledtx), 10, 70, Id="4")
+                textNImg.UpdateText((search_int), 10, 90, Id="5")
+                textNImg.UpdateText((weight), 10, 110, Id="6")
+                textNImg.UpdateText((netweight), 10, 130, Id="7")
+                textNImg.UpdateText((expectedtime), 10, 150, Id="8")
+                textNImg.WriteAll()
 
     if GPIO.input(SW4) == False:
         print "4"
@@ -179,6 +201,3 @@ while True:
         textNImg.WriteAll()
 
     sleep(0.1)
-
-#    if button_state == 4:
-#        stake_info()
