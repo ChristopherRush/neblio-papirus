@@ -76,6 +76,13 @@ config.readfp(buf)
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
 #print rpc_connection
 #Get server status must run xxxx-qt -server first
+if rpc_connection.getinfo() == False:
+    textNImg = PapirusComposite(False) #create variable to store image/text
+    textNImg.AddText("Please start RPC server.....", 50, 5, Id="Start" )
+    textNImg.WriteAll()
+
+
+
 try:
     rpc_connection.getinfo()
     server_status = True
@@ -121,6 +128,10 @@ else:
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
     textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
 textNImg.WriteAll()
+
+#Do not progress unless the server is runnin otherwise you will receive an error
+while rpc_connection.getinfo() == False:
+    sleep(1)
 
 print GPIO.input(SW1)
 print GPIO.input(SW2)

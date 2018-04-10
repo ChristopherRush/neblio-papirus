@@ -120,7 +120,6 @@ At this point you can select one of four buttons (from left to right) at the top
   - Weight
   - Net Stake Weight
   - Expected Time
-- Staking address (SW2) (Coming soon)
-  - Address (Coming soon)
-  - QR Code (Coming soon)
-- (SW1)
+- Unknown (SW2) 
+- Staking address (SW1)
+  - QR Code
