@@ -180,8 +180,8 @@ def draw_image(papirus):
 
         #Append value to string
                 staking = ('Staking: %s' % get_staking)
-                currentblocksize = ('Block Size: %f' % get_curr_block_size)
-                currentblocktx = ('Block Tx: %f' % get_curr_block_tx)
+                currentblocksize = ('Block Size: %d' % get_curr_block_size)
+                currentblocktx = ('Block Tx: %d' % get_curr_block_tx)
                 pooledtx = ('PooledTx: %d' % get_pooledtx)
                 search_int = ('Search: %d' % get_search)
                 weight = ('Weight: %d' % get_weight)
