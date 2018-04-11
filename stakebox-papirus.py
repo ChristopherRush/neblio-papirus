@@ -83,7 +83,7 @@ while True:
     except:
         server_status = False
         pass
-    if server_status == True;
+    if server_status == True:
         break
 
 getaddress = rpc_connection.getaccountaddress('')
