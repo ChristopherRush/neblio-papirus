@@ -77,6 +77,14 @@ rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('co
 #print rpc_connection
 #Get server status must run xxxx-qt -server first
 
+try:
+    rpc_connection.getinfo()
+    server_status = True
+except:
+    server_status = False
+    pass
+
+
 getaddress = rpc_connection.getaccountaddress('')
 
 #QR Code URL from Google APi
