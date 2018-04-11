@@ -76,12 +76,6 @@ config.readfp(buf)
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
 #print rpc_connection
 #Get server status must run xxxx-qt -server first
-if rpc_connection.getinfo() == False:
-    textNImg = PapirusComposite(False) #create variable to store image/text
-    textNImg.AddText("Please start RPC server.....", 50, 5, Id="Start" )
-    textNImg.WriteAll()
-
-
 
 try:
     rpc_connection.getinfo()
