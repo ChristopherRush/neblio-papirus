@@ -76,15 +76,6 @@ config.readfp(buf)
 rpc_connection = AuthServiceProxy("http://%s:%s@127.0.0.1:8332"%((config.get('config','rpcuser')),(config.get('config','rpcpassword'))))
 #print rpc_connection
 #Get server status must run xxxx-qt -server first
-while True:
-    try:
-        rpc_connection.getinfo()
-        server_status = True
-    except:
-        server_status = False
-        pass
-    if server_status == True:
-        break
 
 getaddress = rpc_connection.getaccountaddress('')
 
