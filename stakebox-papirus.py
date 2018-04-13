@@ -127,11 +127,6 @@ textNImg.WriteAll()
 while rpc_connection.getinfo() == False:
     sleep(1)
 
-print GPIO.input(SW1)
-print GPIO.input(SW2)
-print GPIO.input(SW3)
-print GPIO.input(SW4)
-
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
 
@@ -154,7 +149,6 @@ def draw_image(papirus):
 
 
         if GPIO.input(SW1) == False:
-            print "1"
             textNImg = PapirusComposite(False) #Clears the draw buffer
             textNImg.AddImg("images/qr.png",60,10,(150,150), Id="BigImg")
             textNImg.WriteAll()
