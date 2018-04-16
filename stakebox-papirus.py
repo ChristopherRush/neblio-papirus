@@ -37,7 +37,7 @@ CLOCK_FONT_FILE = '/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf'
 DATE_FONT_FILE  = '/usr/share/fonts/truetype/freefont/FreeMono.ttf'
 
 nebliopath='/home/pi/.neblio/neblio.conf'
-qtumpath=''
+qtumpath='/home/pi/.qtum/qtum.conf'
 reddcoinpath='/home/pi/.reddcoin/reddcoin.conf'
 trezarcoinpath=''
 
@@ -46,7 +46,6 @@ trezarcoinpath=''
 #Check with staking application is installed
 if os.path.isfile(nebliopath):
     config_path = nebliopath
-
     print "Neblio installed"
 else:
     print "Neblio not installed"
@@ -54,9 +53,15 @@ else:
 if os.path.isfile(reddcoinpath):
     config_path = reddcoinpath
     print "Reddcoin installed"
-
 else:
     print "Reddcoin not installed"
+
+if os.path.isfile(qtumpath):
+    config_path = qtumpath
+
+    print "QTUM installed"
+else:
+    print "QTUM not installed"
 
 if config_path == "":
     print "No configuration file found. Please run config.py to setup"
@@ -91,7 +96,7 @@ getaddress = rpc_connection.getaccountaddress('')
 url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s' %getaddress
 
 #Download QR code
-urllib.urlretrieve(url, '/home/pi/neblio-papirus/images/qr.png')
+urllib.urlretrieve(url, '/home/pi/stakebox-papirus/images/qr.png')
 
 #Button GPIO pins
 SW1 = 16
