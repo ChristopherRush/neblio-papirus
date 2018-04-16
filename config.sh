@@ -5,6 +5,7 @@ RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 neblioqt=/home/pi/Desktop/neblio-qt
 reddcoinqt=/home/pi/reddcoin-2.0.1.2/reddcoin-qt
 qtumd=/home/pi/.qtum/
+trezarqt=/home/pi/TrezarCoin/trezarcoin-qt
 
 if [ -e "$neblioqt" ]; then
     echo "neblio installed....checking config file"
@@ -56,12 +57,32 @@ if [ -e "$qtumd" ]; then
         touch $qtum
         echo "qtum.conf file created"
         echo "rpcpassword=$RPCPASSWORD" >> $qtum
-        echo "rpcuser=reddcoinrpc" >> $qtum
+        echo "rpcuser=qtumrpc" >> $qtum
         echo "rpcport=8332" >> $qtum
         echo "rpcallowip=127.0.0.1" >> $qtum
         echo "configuration settings appended"
     fi
 else
     echo "qtum not installed on this StakeBox"
+
+fi
+
+if [ -e "$trezarqt" ]; then
+    echo "TrezarCoin installed....checking config file"
+    trezar=/home/pi/TrezarCoin/trezarcoin.conf
+    if [ -e "$trezar" ]; then
+        echo "Config file already exists at $trezar"
+    else
+        echo "File does not exist"
+        touch $trezar
+        echo "trezarcoin.conf file created"
+        echo "rpcpassword=$RPCPASSWORD" >> $trezar
+        echo "rpcuser=trezarcoinrpc" >> $trezar
+        echo "rpcport=8332" >> $trezar
+        echo "rpcallowip=127.0.0.1" >> $trezar
+        echo "configuration settings appended"
+    fi
+else
+    echo "TrezarCoin not installed on this StakeBox"
 
 fi

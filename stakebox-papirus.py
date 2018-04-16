@@ -39,7 +39,7 @@ DATE_FONT_FILE  = '/usr/share/fonts/truetype/freefont/FreeMono.ttf'
 nebliopath='/home/pi/.neblio/neblio.conf'
 qtumpath='/home/pi/.qtum/qtum.conf'
 reddcoinpath='/home/pi/.reddcoin/reddcoin.conf'
-trezarcoinpath=''
+trezarcoinpath='/home/pi/TrezarCoin/trezarcoin.conf'
 
 config_path = ""
 
@@ -63,6 +63,13 @@ if os.path.isfile(qtumpath):
     print "QTUM installed"
 else:
     print "QTUM not installed"
+
+if os.path.isfile(trezarcoinpath):
+    config_path = trezarcoinpath
+
+    print "TrezarCoin installed"
+else:
+    print "TrezarCoin not installed"
 
 if config_path == "":
     print "No configuration file found. Please run config.py to setup"
