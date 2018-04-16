@@ -41,6 +41,7 @@ qtumpath='/home/pi/.qtum/qtum.conf'
 reddcoinpath='/home/pi/.reddcoin/reddcoin.conf'
 trezarcoinpath=''
 
+config_path = ""
 
 #add while statement here
 #Check with staking application is installed
