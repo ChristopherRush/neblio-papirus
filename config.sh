@@ -4,6 +4,7 @@ RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 neblioqt=/home/pi/Desktop/neblio-qt
 reddcoinqt=/home/pi/reddcoin-2.0.1.2/reddcoin-qt
+qtum=/home/pi/qtum/
 
 if [ -e "$neblioqt" ]; then
     echo "neblio installed....checking config file"
@@ -42,5 +43,25 @@ if [ -e "$reddcoinqt" ]; then
     fi
 else
     echo "reddcoin not installed on this StakeBox"
+
+fi
+
+if [ -e "$qtumd" ]; then
+    echo "qtum installed....checking config file"
+    qtum=/home/pi/.qtum/qtum.conf
+    if [ -e "$qtum" ]; then
+        echo "Config file already exists at $qtum"
+    else
+        echo "File does not exist"
+        touch $qtum
+        echo "qtum.conf file created"
+        echo "rpcpassword=$RPCPASSWORD" >> $qtum
+        echo "rpcuser=reddcoinrpc" >> $qtum
+        echo "rpcport=8332" >> $qtum
+        echo "rpcallowip=127.0.0.1" >> $qtum
+        echo "configuration settings appended"
+    fi
+else
+    echo "qtum not installed on this StakeBox"
 
 fi
