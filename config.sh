@@ -69,7 +69,7 @@ fi
 
 if [ -e "$trezarqt" ]; then
     echo "TrezarCoin installed....checking config file"
-    trezar=/home/pi/TrezarCoin/trezarcoin.conf
+    trezar=/home/pi/.trezarcoin/trezarcoin.conf
     if [ -e "$trezar" ]; then
         echo "Config file already exists at $trezar"
     else

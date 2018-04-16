@@ -39,7 +39,7 @@ DATE_FONT_FILE  = '/usr/share/fonts/truetype/freefont/FreeMono.ttf'
 nebliopath='/home/pi/.neblio/neblio.conf'
 qtumpath='/home/pi/.qtum/qtum.conf'
 reddcoinpath='/home/pi/.reddcoin/reddcoin.conf'
-trezarcoinpath='/home/pi/TrezarCoin/trezarcoin.conf'
+trezarcoinpath='/home/pi/.trezarcoin/trezarcoin.conf'
 
 config_path = ""
 

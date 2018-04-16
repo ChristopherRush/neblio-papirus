@@ -7,7 +7,7 @@ This project uses the PaPiRus 2.7" e-ink display to show all your StakeBox stati
 - [Neblio](https://www.stakebox.org/collections/stakeboxes/products/neblio-stakebox)
 - [QTUM](https://www.stakebox.org/collections/stakeboxes/products/qtum-stakebox) (Coming Soon)
 - [Reddcoin](https://www.stakebox.org/collections/stakeboxes/products/reddcoin-stakebox)
-- Trezarcoin (Coming Soon)
+- [Trezarcoin](https://www.stakebox.org/collections/stakeboxes/products/trezarcoin-stakebox) (Coming Soon)
 
 
 ## Hardware setup
@@ -120,6 +120,6 @@ At this point you can select one of four buttons (from left to right) at the top
   - Weight
   - Net Stake Weight
   - Expected Time
-- Unknown (SW2) 
+- Unknown (SW2)
 - Staking address (SW1)
   - QR Code
