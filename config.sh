@@ -4,7 +4,7 @@ RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 neblioqt=/home/pi/Desktop/neblio-qt
 reddcoinqt=/home/pi/reddcoin-2.0.1.2/reddcoin-qt
-qtum=/home/pi/qtum/
+qtumd=/home/pi/qtum/
 
 if [ -e "$neblioqt" ]; then
     echo "neblio installed....checking config file"
