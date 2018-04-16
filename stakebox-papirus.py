@@ -170,7 +170,10 @@ def draw_image(papirus):
             papirus.clear()
             while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
         #Get info from RPC connection
-                get_staking = rpc_connection.getstakinginfo()["staking"]
+                if config_path == trezarcoinpath:
+                    get_staking = rpc_connection.getmininginfo()["staking"]
+                else:
+                    get_staking = rpc_connection.getstakinginfo()["staking"]
                 get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
                 get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
                 get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
@@ -212,7 +215,10 @@ def draw_image(papirus):
                 get_stake = rpc_connection.getinfo()["stake"]
                 get_connection = rpc_connection.getinfo()["connections"]
                 get_blocks = rpc_connection.getinfo()["blocks"]
-                get_pos = rpc_connection.getstakinginfo()["difficulty"]
+                if config_path == trezarcoinpath:
+                    get_pos = rpc_connection.getmininginfo()["difficulty"]
+                else:
+                    get_pos = rpc_connection.getstakinginfo()["difficulty"]
 
                 version = ('Version: %s' % get_version)
                 balance = ('Balance: %f' % get_balance)
