@@ -166,7 +166,7 @@ def draw_image(papirus):
             server_status = False
             pass
 
-        while server_status == True:
+        while server_status = True:
 
             if GPIO.input(SW1) == False:
                 textNImg = PapirusComposite(False) #Clears the draw buffer
