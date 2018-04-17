@@ -133,26 +133,15 @@ if server_status == True:
     textNImg.AddText("Press a button", 50, 5, Id="Start" )
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
     textNImg.AddText("Server Status: Active ", 10, 156, Id="bottom")
+    textNImg.WriteAll()
 else:
     textNImg.AddText("Press a button", 50, 5, Id="Start" )
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
     textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
-textNImg.WriteAll()
+    textNImg.WriteAll()
+    sys.exit('server not running')
 
-#Do not progress unless the server is runnin otherwise you will receive an error
-#while rpc_connection.getinfo() == False:
-#    sleep(1)
-while server_status == False:
-    try:
-        rpc_connection.getinfo()
-        server_status = True
-        print "try"
-    except:
-        server_status = False
-        print "except"
-        pass
-    sleep(1)
-print "pass"        
+
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
 
