@@ -42,6 +42,7 @@ reddcoinpath='/home/pi/.reddcoin/reddcoin.conf'
 trezarcoinpath='/home/pi/.trezarcoin/trezarcoin.conf'
 
 config_path = ""
+server_status = False
 
 #add while statement here
 #Check with staking application is installed
@@ -166,7 +167,7 @@ def draw_image(papirus):
             server_status = False
             pass
 
-        while server_status = True:
+        while server_status == True:
 
             if GPIO.input(SW1) == False:
                 textNImg = PapirusComposite(False) #Clears the draw buffer
