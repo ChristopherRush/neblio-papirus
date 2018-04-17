@@ -99,15 +99,17 @@ except:
 
 try:
     getaddress = rpc_connection.getaccountaddress('')
+
+    #QR Code URL from Google APi
+    url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s' %getaddress
+
+    #Download QR code
+    urllib.urlretrieve(url, '/home/pi/stakebox-papirus/images/qr.png')
 except:
     pass
 
 
-#QR Code URL from Google APi
-url ='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=%s' %getaddress
 
-#Download QR code
-urllib.urlretrieve(url, '/home/pi/stakebox-papirus/images/qr.png')
 
 #Button GPIO pins
 SW1 = 16
