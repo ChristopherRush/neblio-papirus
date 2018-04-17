@@ -146,11 +146,13 @@ while server_status == False:
     try:
         rpc_connection.getinfo()
         server_status = True
+        print "try"
     except:
         server_status = False
+        print "except"
         pass
-
-        
+    sleep(1)
+print "pass"        
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
 
