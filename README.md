@@ -5,9 +5,9 @@
 
 This project uses the PaPiRus 2.7" e-ink display to show all your StakeBox statistics such as network status, staking information as well as your current address and QR code for transferring coins/tokens to your wallet. This project is currently compatible with the following StakeBoxes:
 - [Neblio](https://www.stakebox.org/collections/stakeboxes/products/neblio-stakebox)
-- [QTUM](https://www.stakebox.org/collections/stakeboxes/products/qtum-stakebox) (Coming Soon)
+- [QTUM](https://www.stakebox.org/collections/stakeboxes/products/qtum-stakebox)
 - [Reddcoin](https://www.stakebox.org/collections/stakeboxes/products/reddcoin-stakebox)
-- [Trezarcoin](https://www.stakebox.org/collections/stakeboxes/products/trezarcoin-stakebox) (Coming Soon)
+- [Trezarcoin](https://www.stakebox.org/collections/stakeboxes/products/trezarcoin-stakebox)
 
 
 ## Hardware setup
