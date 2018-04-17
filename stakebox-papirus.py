@@ -142,8 +142,8 @@ else:
 textNImg.WriteAll()
 
 #Do not progress unless the server is runnin otherwise you will receive an error
-while rpc_connection.getinfo() == False:
-    sleep(1)
+#while rpc_connection.getinfo() == False:
+#    sleep(1)
 
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
