@@ -145,8 +145,16 @@ textNImg.WriteAll()
 
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
-        if server_status == True:
-            draw_image(papirus)
+        while server_status == False:
+            try:
+                rpc_connection.getinfo()
+                server_status = True
+            except:
+                server_status = False
+                pass
+
+        draw_image(papirus)
+
 
 def draw_image(papirus):
      # initially set all white background
