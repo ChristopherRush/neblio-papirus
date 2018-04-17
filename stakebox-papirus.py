@@ -143,7 +143,7 @@ textNImg.WriteAll()
 #while rpc_connection.getinfo() == False:
 #    sleep(1)
 
-def main(argv):
+def main(argv, server_status):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
         while server_status == False:
             try:
