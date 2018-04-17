@@ -176,6 +176,10 @@ def draw_image(papirus):
 
                     blocks = ('Blocks: %d' % get_blocks)
                     difficulty = ('POS Difficulty: %d' % get_difficulty)
+                    get_curr_block_size = rpc_connection.getmininginfo()["currentblocksize"]
+                    get_curr_block_tx = rpc_connection.getmininginfo()["currentblocktx"]
+                    get_pooledtx = rpc_connection.getmininginfo()["pooledtx"]
+                    get_netweight = rpc_connection.getmininginfo()["stakeweight"]
 
                 else:
                     get_staking = rpc_connection.getstakinginfo()["staking"]
@@ -188,10 +192,10 @@ def draw_image(papirus):
                     staking = ('Staking: %s' % get_staking)
                     expectedtime = ('Expected: %f' % get_exp_time)
 
-                get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
-                get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
-                get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
-                get_netweight = rpc_connection.getstakinginfo()["stakeweight"]
+                    get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
+                    get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
+                    get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
+                    get_netweight = rpc_connection.getstakinginfo()["stakeweight"]
 
 
         #Append value to string
@@ -208,7 +212,7 @@ def draw_image(papirus):
                 if config_path == trezarcoinpath:
                     draw.text((5, 10), blocks, fill=BLACK, font=clock_font)
                     draw.text((5, clock_font_size + 70), search_int, fill=BLACK, font=clock_font)
-                    
+
                 else:
                     draw.text((5, 10), staking, fill=BLACK, font=clock_font)
                     draw.text((5, clock_font_size + 70), search_int, fill=BLACK, font=clock_font)
