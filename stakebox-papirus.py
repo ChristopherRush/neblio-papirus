@@ -107,14 +107,11 @@ except:
     server_status = False
     pass
 
-
-
 #Button GPIO pins
 SW1 = 16
 SW2 = 19
 SW3 = 20
 SW4 = 21
-
 
 GPIO.setmode(GPIO.BCM) #Use BCM GPIO numbering
 
@@ -139,13 +136,12 @@ else:
     textNImg.AddImg("images/StakeBox-Black.bmp",69,25,(125,125), Id="BigImg")
     textNImg.AddText("Server Status: Down ", 10, 156, Id="bottom")
     textNImg.WriteAll()
+    #Exit program if RPC server is not running
     sys.exit('server not running')
 
 
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
-
-
         draw_image(papirus)
 
 
