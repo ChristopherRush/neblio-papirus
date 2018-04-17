@@ -142,16 +142,18 @@ textNImg.WriteAll()
 #Do not progress unless the server is runnin otherwise you will receive an error
 #while rpc_connection.getinfo() == False:
 #    sleep(1)
+while server_status == False:
+    try:
+        rpc_connection.getinfo()
+        server_status = True
+    except:
+        server_status = False
+        pass
 
+        
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
-        while global server_status == False:
-            try:
-                rpc_connection.getinfo()
-                server_status = True
-            except:
-                server_status = False
-                pass
+
 
         draw_image(papirus)
 
