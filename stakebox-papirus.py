@@ -101,9 +101,11 @@ try:
 
     #Download QR code
     urllib.urlretrieve(url, '/home/pi/stakebox-papirus/images/qr.png')
+    rpc_connection.getinfo()
+    server_status = True
 except:
+    server_status = False
     pass
-
 
 
 
@@ -143,8 +145,8 @@ textNImg.WriteAll()
 
 def main(argv):
         papirus = Papirus(rotation = int(argv[0]) if len(sys.argv) > 1 else 0)
-
-        draw_image(papirus)
+        if server_status == True:
+            draw_image(papirus)
 
 def draw_image(papirus):
      # initially set all white background
@@ -160,116 +162,108 @@ def draw_image(papirus):
      # clear the display buffer
     draw.rectangle((0, 0, width, height), fill=WHITE, outline=WHITE)
     while True:
-        try:
-            rpc_connection.getinfo()
-            server_status = True
-        except:
-            server_status = False
-            pass
 
-        while server_status == True:
+        if GPIO.input(SW1) == False:
+            textNImg = PapirusComposite(False) #Clears the draw buffer
+            textNImg.AddImg("images/qr.png",60,10,(150,150), Id="BigImg")
+            textNImg.WriteAll()
 
-            if GPIO.input(SW1) == False:
-                textNImg = PapirusComposite(False) #Clears the draw buffer
-                textNImg.AddImg("images/qr.png",60,10,(150,150), Id="BigImg")
-                textNImg.WriteAll()
+        if GPIO.input(SW3) == False:
+            papirus.clear()
+            while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
+                #Get info from RPC connection
+                if config_path == trezarcoinpath:
+                    get_blocks = rpc_connection.getmininginfo()["blocks"]
+                    get_difficulty = rpc_connection.getmininginfo()["posdifficulty"]
 
-            if GPIO.input(SW3) == False:
-                papirus.clear()
-                while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
-                    #Get info from RPC connection
-                    if config_path == trezarcoinpath:
-                        get_blocks = rpc_connection.getmininginfo()["blocks"]
-                        get_difficulty = rpc_connection.getmininginfo()["posdifficulty"]
-
-                        blocks = ('Blocks: %d' % get_blocks)
-                        difficulty = ('POS Difficulty: %d' % get_difficulty)
-                        get_curr_block_size = rpc_connection.getmininginfo()["currentblocksize"]
-                        get_curr_block_tx = rpc_connection.getmininginfo()["currentblocktx"]
-                        get_pooledtx = rpc_connection.getmininginfo()["pooledtx"]
-                        get_netweight = rpc_connection.getmininginfo()["stakeweight"]
-
-                    else:
-                        get_staking = rpc_connection.getstakinginfo()["staking"]
-                        get_search = rpc_connection.getstakinginfo()["search-interval"]
-                        get_weight = rpc_connection.getstakinginfo()["weight"]
-                        get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
-
-                        search_int = ('Search: %d' % get_search)
-                        weight = ('Weight: %d' % get_weight)
-                        staking = ('Staking: %s' % get_staking)
-                        expectedtime = ('Expected: %f' % get_exp_time)
-
-                    get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
-                    get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
-                    get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
-                    get_netweight = rpc_connection.getstakinginfo()["stakeweight"]
-
-
-                    #Append value to string
-                    currentblocksize = ('Block Size: %d' % get_curr_block_size)
-                    currentblocktx = ('Block Tx: %d' % get_curr_block_tx)
-                    pooledtx = ('PooledTx: %d' % get_pooledtx)
-                    netweight = ('Net Weight: %d' % get_netweight)
-
-
-
-                    #Write to the PaPiRus screen
-                    draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
-
-                    if config_path == trezarcoinpath:
-                        draw.text((5, 10), blocks, fill=BLACK, font=clock_font)
-                        draw.text((5, clock_font_size + 70), difficulty, fill=BLACK, font=clock_font)
-
-                    else:
-                        draw.text((5, 10), staking, fill=BLACK, font=clock_font)
-                        draw.text((5, clock_font_size + 70), search_int, fill=BLACK, font=clock_font)
-                        draw.text((5, clock_font_size + 90), weight, fill=BLACK, font=clock_font)
-                        draw.text((5, clock_font_size + 130), expectedtime, fill=BLACK, font=clock_font)
-
-                    draw.text((5, clock_font_size + 10), currentblocksize, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 30), currentblocktx, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 50), pooledtx, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 110), netweight, fill=BLACK, font=clock_font)
-
-
-
-                    papirus.display(image)
-
-                    papirus.partial_update()
-
-            if GPIO.input(SW4) == False:
-                papirus.clear()
-                while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
-
-                    get_version = rpc_connection.getinfo()["version"]
-                    get_balance = rpc_connection.getinfo()["balance"]
-                    get_stake = rpc_connection.getinfo()["stake"]
-                    get_connection = rpc_connection.getinfo()["connections"]
-                    get_blocks = rpc_connection.getinfo()["blocks"]
-                    if config_path == trezarcoinpath:
-                        get_pos = rpc_connection.getmininginfo()["posdifficulty"]
-                    else:
-                        get_pos = rpc_connection.getstakinginfo()["posdifficulty"]
-
-                    version = ('Version: %s' % get_version)
-                    balance = ('Balance: %f' % get_balance)
-                    stake = ('Stake: %f' % get_stake)
-                    connections = ('Connections: %d' % get_connection)
                     blocks = ('Blocks: %d' % get_blocks)
-                    pos = ('PoS: %f' % get_pos)
+                    difficulty = ('POS Difficulty: %d' % get_difficulty)
+                    get_curr_block_size = rpc_connection.getmininginfo()["currentblocksize"]
+                    get_curr_block_tx = rpc_connection.getmininginfo()["currentblocktx"]
+                    get_pooledtx = rpc_connection.getmininginfo()["pooledtx"]
+                    get_netweight = rpc_connection.getmininginfo()["stakeweight"]
 
-                    #Write to the PaPiRus screen
-                    draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
-                    draw.text((5, 10), version, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 10), balance, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 30), stake, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 50), connections, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 70), blocks, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 90), pos, fill=BLACK, font=clock_font)
-                    papirus.display(image)
+                else:
+                    get_staking = rpc_connection.getstakinginfo()["staking"]
+                    get_search = rpc_connection.getstakinginfo()["search-interval"]
+                    get_weight = rpc_connection.getstakinginfo()["weight"]
+                    get_exp_time = rpc_connection.getstakinginfo()["expectedtime"]
 
-                    papirus.partial_update()
+                    search_int = ('Search: %d' % get_search)
+                    weight = ('Weight: %d' % get_weight)
+                    staking = ('Staking: %s' % get_staking)
+                    expectedtime = ('Expected: %f' % get_exp_time)
+
+                get_curr_block_size = rpc_connection.getstakinginfo()["currentblocksize"]
+                get_curr_block_tx = rpc_connection.getstakinginfo()["currentblocktx"]
+                get_pooledtx = rpc_connection.getstakinginfo()["pooledtx"]
+                get_netweight = rpc_connection.getstakinginfo()["stakeweight"]
+
+
+                #Append value to string
+                currentblocksize = ('Block Size: %d' % get_curr_block_size)
+                currentblocktx = ('Block Tx: %d' % get_curr_block_tx)
+                pooledtx = ('PooledTx: %d' % get_pooledtx)
+                netweight = ('Net Weight: %d' % get_netweight)
+
+
+
+                #Write to the PaPiRus screen
+                draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
+
+                if config_path == trezarcoinpath:
+                    draw.text((5, 10), blocks, fill=BLACK, font=clock_font)
+                    draw.text((5, clock_font_size + 70), difficulty, fill=BLACK, font=clock_font)
+
+                else:
+                    draw.text((5, 10), staking, fill=BLACK, font=clock_font)
+                    draw.text((5, clock_font_size + 70), search_int, fill=BLACK, font=clock_font)
+                    draw.text((5, clock_font_size + 90), weight, fill=BLACK, font=clock_font)
+                    draw.text((5, clock_font_size + 130), expectedtime, fill=BLACK, font=clock_font)
+
+                draw.text((5, clock_font_size + 10), currentblocksize, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 30), currentblocktx, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 50), pooledtx, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 110), netweight, fill=BLACK, font=clock_font)
+
+
+
+                papirus.display(image)
+
+                papirus.partial_update()
+
+        if GPIO.input(SW4) == False:
+            papirus.clear()
+            while GPIO.input(SW3) == True & GPIO.input(SW1) == True & GPIO.input(SW4) == True:
+
+                get_version = rpc_connection.getinfo()["version"]
+                get_balance = rpc_connection.getinfo()["balance"]
+                get_stake = rpc_connection.getinfo()["stake"]
+                get_connection = rpc_connection.getinfo()["connections"]
+                get_blocks = rpc_connection.getinfo()["blocks"]
+                if config_path == trezarcoinpath:
+                    get_pos = rpc_connection.getmininginfo()["posdifficulty"]
+                else:
+                    get_pos = rpc_connection.getstakinginfo()["posdifficulty"]
+
+                version = ('Version: %s' % get_version)
+                balance = ('Balance: %f' % get_balance)
+                stake = ('Stake: %f' % get_stake)
+                connections = ('Connections: %d' % get_connection)
+                blocks = ('Blocks: %d' % get_blocks)
+                pos = ('PoS: %f' % get_pos)
+
+                #Write to the PaPiRus screen
+                draw.rectangle((2, 2, width - 2, height - 2), fill=WHITE, outline=BLACK)
+                draw.text((5, 10), version, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 10), balance, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 30), stake, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 50), connections, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 70), blocks, fill=BLACK, font=clock_font)
+                draw.text((5, clock_font_size + 90), pos, fill=BLACK, font=clock_font)
+                papirus.display(image)
+
+                papirus.partial_update()
     sleep(0.1)
 
 # main
