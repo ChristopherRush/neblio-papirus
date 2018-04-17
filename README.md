@@ -68,6 +68,8 @@ rpcallowip=127.0.0.1
 You can find the configuration file in the application directory:
 - neblio - /home/pi/.neblio/neblio.config
 - reddcoin - /home/pi/.reddcoin/reddcoin.conf
+- qtum - /home/pi/.qtum/qtum.conf
+- trezarcoin /home/pi/.trezarcoin/trezarcoin.conf
 
 6. Finally you can install the PaPiRus library using the following instalation script or if you wish to install manually you can follow the steps on the PaPiRus [GitHub](https://github.com/PiSupply/PaPiRus) page:
 ```bash
@@ -85,6 +87,13 @@ cd /home/pi/Desktop
 #Reddcoin
 cd /home/pi/reddcoin-2.0.1.2
 ./reddcoin-qt -server
+
+#QTUM
+qtumd daemon
+
+#TrezarCoin
+cd /home/pi/Desktop
+./trezarcoin-qt -server
 ```
 
 NOTE: You cannot run this command using SSH, it must be run from the Desktop GUI
