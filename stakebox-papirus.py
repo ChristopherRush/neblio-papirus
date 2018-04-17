@@ -211,7 +211,7 @@ def draw_image(papirus):
 
                 if config_path == trezarcoinpath:
                     draw.text((5, 10), blocks, fill=BLACK, font=clock_font)
-                    draw.text((5, clock_font_size + 70), search_int, fill=BLACK, font=clock_font)
+                    draw.text((5, clock_font_size + 70), difficulty, fill=BLACK, font=clock_font)
 
                 else:
                     draw.text((5, 10), staking, fill=BLACK, font=clock_font)
